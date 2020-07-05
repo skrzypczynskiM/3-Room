@@ -1,13 +1,14 @@
 <template>
   <div id="app">
-    <div>Hello</div>
+    <Todo></Todo>
   </div>
 </template>
 
 <script>
+import Todo from './components/todo/MainTodo';
 export default {
   name: 'App',
-  components: {},
+  components: { Todo },
 };
 </script>
 
