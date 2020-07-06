@@ -1,9 +1,14 @@
 <template>
   <div class="todo-list-container">
     <TodoListHeader v-bind:type-of-todo="todoType" />
-    <TodoItemAdd :toggleNewTodo="toggleNewTodo" />
+    <TodoItemAdd
+      :toggleNewTodo="toggleNewTodo"
+      :createNewTodo="createNewTodo"
+    />
 
-    <ul class="todo-list">
+    <div v-if="isEmpty" class="empty-todo-list">This notebook is empty</div>
+
+    <ul v-else class="todo-list">
       <TodoItem
         v-bind:key="todo.id"
         v-for="todo in todoList"
@@ -120,6 +125,12 @@ export default {
     },
   },
 
+  computed: {
+    isEmpty() {
+      return Object.keys(this.todoList).length === 0;
+    },
+  },
+
   components: {
     TodoItem,
     TodoListHeader,
@@ -132,7 +143,7 @@ export default {
 <style lang="scss" scoped>
 .todo-list-container {
   position: relative;
-  margin: 30px;
+  margin: 38px 30px;
   padding: 40px 20px;
   background: #fafbfb;
   border-radius: 8px;
@@ -165,10 +176,17 @@ export default {
 }
 
 form {
-  margin-top: 15px;
+  margin-top: 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.empty-todo-list {
+  color: #4c4848;
+  text-align: center;
+  margin: 10px;
+  font-size: 17px;
 }
 
 .todo-list {

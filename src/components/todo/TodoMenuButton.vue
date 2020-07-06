@@ -14,8 +14,8 @@ export default {
 
 <style lang="scss" scoped>
 .menu-container {
-  width: 42px;
-  height: 42px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background: #282828;
   display: flex;
@@ -39,10 +39,10 @@ export default {
     background: #fafbfb;
     margin-left: 15px;
     &:first-child {
-      width: 30%;
+      width: 35%;
     }
     &:last-child {
-      width: 20%;
+      width: 25%;
       margin-top: 5px;
     }
   }

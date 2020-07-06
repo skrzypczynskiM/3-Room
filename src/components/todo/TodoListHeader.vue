@@ -18,8 +18,8 @@ export default {
 
 <style lang="scss" scoped>
 .todo-type {
-  padding: 6px 8px;
-  font-size: 13px;
+  padding: 7px 12px;
+  font-size: 15px;
   color: white;
   border-radius: 4px;
   position: absolute;

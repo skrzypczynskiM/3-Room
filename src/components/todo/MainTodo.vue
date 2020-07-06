@@ -7,15 +7,21 @@
     </ul> -->
     <TodoMenu :isMenuOpen="isMenuOpen" :toggleEditMode="toggleEditMode" />
     <div class="content">
-      <Header />
+      <div class="header">
+        <Header />
+        <div class="radialBar-container">
+          <RadialBar v-bind="completedTasks" />
+        </div>
+      </div>
+
       <TodoList
         v-on:add-todo="addTodoItem"
         v-on:delete-todo="deleteTodoItem"
         v-for="(todoList, todoType, index) in todos"
         :key="index"
-        v-bind:todo-type="todoType"
-        v-bind:todo-list="todoList"
-        v-bind:isMenuOpen="isMenuOpen"
+        :todo-type="todoType"
+        :todo-list="todoList"
+        :isMenuOpen="isMenuOpen"
         :isEditMode="isEditMode"
       />
     </div>
@@ -28,6 +34,8 @@ import TodoList from './TodoList';
 import TodoMenuButton from './TodoMenuButton';
 import TodoMenu from './TodoMenu';
 
+import RadialBar from './RadialBar';
+
 import { uuid } from 'vue-uuid';
 
 export default {
@@ -37,6 +45,7 @@ export default {
     TodoList,
     TodoMenu,
     TodoMenuButton,
+    RadialBar,
   },
   data() {
     return {
@@ -108,7 +117,6 @@ export default {
 
     deleteTodoItem(payload) {
       const { todoType, id } = payload;
-      console.log('here: ', todoType, id);
       const newTodos = this.todos[todoType].filter((todo) => todo.id !== id);
       this.todos[todoType] = newTodos;
     },
@@ -118,6 +126,26 @@ export default {
     },
     toggleEditMode() {
       this.isEditMode = !this.isEditMode;
+    },
+  },
+
+  computed: {
+    completedTasks() {
+      let allTasks = 0;
+      let completedTasks = 0;
+      let isDayComplete = false;
+
+      Object.keys(this.todos).forEach((todoList) => {
+        this.todos[todoList].forEach((todo) => {
+          allTasks++;
+          if (todo.completed) completedTasks++;
+        });
+      });
+
+      isDayComplete = allTasks === completedTasks && allTasks > 0;
+      console.log();
+
+      return { allTasks, completedTasks, isDayComplete };
     },
   },
 };
@@ -132,5 +160,17 @@ export default {
   background: #f5f5f5;
   border-radius: 6px;
   padding-bottom: 20px;
+}
+
+.header {
+  /* display: flex; */
+  /* justify-content: space-around; */
+  margin-bottom: 130px;
+
+  & > .radialBar-container {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+  }
 }
 </style>

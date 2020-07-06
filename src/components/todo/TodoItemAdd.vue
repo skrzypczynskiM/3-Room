@@ -1,13 +1,13 @@
 <template>
   <div class="add-item" v-on:click="toggleNewTodo">
-    <slot>+</slot>
+    {{ createNewTodo ? '-' : '+' }}
   </div>
 </template>
 
 <script>
 export default {
   name: 'TodoDelete',
-  props: ['toggleNewTodo'],
+  props: ['toggleNewTodo', 'createNewTodo'],
 };
 </script>
 

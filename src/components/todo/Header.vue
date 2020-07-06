@@ -11,7 +11,8 @@ export default {
 
 <style lang="scss" scoped>
 header {
-  width: 100%;
+  /* width: 100%; */
+  display: inline-block;
   font-size: 40px;
   font-weight: 600;
   color: #3d405f;

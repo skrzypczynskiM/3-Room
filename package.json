@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "easy-circular-progress": "^1.0.4",
     "vue": "^2.6.11",
+    "vue-radial-progress": "^0.3.2",
     "vue-uuid": "^2.0.2"
   },
   "devDependencies": {
