@@ -1,27 +1,29 @@
 <template>
   <radial-progress-bar
-    :diameter="150"
+    :diameter="100"
     :completed-steps="completedTasks"
     :total-steps="allTasks"
     :animateSpeed="500"
     startColor="#42a942"
     stopColor="#33fb33"
     innerStrokeColor="#C8C8C8"
-    fps="320"
+    :fps="320"
   >
-    <!-- <p>Total tasks: {{ allTasks }}</p> -->
-    <div v-if="isDayComplete" class="inner-text-container">
-      <!-- <p class="percent complete">{{ getPercent }}</p> -->
+    <!-- <div v-if="isDayComplete" class="inner-text-container"> -->
+    <!--    
       <p class="inner-text">Congrats!</p>
 
-      <p class="inner-text">All tasks done</p>
-    </div>
-    <div v-else class="inner-text-container">
+      <p class="inner-text">All tasks done</p> -->
+    <!-- </div> -->
+    <div class="inner-text-container">
       <div>
         <p class="percent">
           {{ getPercent }}
-          <!-- <span>%</span> -->
-          <span class="inner-number">{{ completedTasks }}/{{ allTasks }}</span>
+
+          <span v-if="isDayComplete" class="inner-text">Well done!</span>
+          <span v-else class="inner-number"
+            >{{ completedTasks }}/{{ allTasks }}</span
+          >
         </p>
       </div>
     </div>
@@ -37,7 +39,7 @@ export default {
       allTasksDone: false,
     };
   },
-  props: ['allTasks', 'completedTasks', 'isDayComplete'],
+  props: ['allTasks', 'completedTasks', 'isDayComplete', 'top-priority-todo'],
 
   computed: {
     getPercent() {
@@ -62,14 +64,15 @@ export default {
 }
 
 .inner-text {
-  font-size: 18px;
+  font-size: 10px;
   font-weight: 700;
+  display: block;
 
-  &:last-child {
+  /* &:last-child {
     font-size: 13px;
     margin-top: 5px;
     font-weight: 600;
-  }
+  } */
 }
 
 .inner-number {
@@ -77,12 +80,14 @@ export default {
   letter-spacing: 1px;
   font-weight: 700;
   display: block;
-  font-size: 14px;
+  font-size: 13px;
   text-align: center;
 }
 
 .percent {
-  font-size: 34px;
+  /* font-size: 34px; */
+  font-size: 25px;
+
   position: relative;
   font-weight: 600;
 
@@ -94,9 +99,14 @@ export default {
 
   &::after {
     content: '\%';
-    font-size: 18px;
+    /* font-size: 18px; */
+    font-size: 13px;
+
     position: absolute;
-    right: -50%;
+    /* right: -50%; */
+    /* right: 17%; */
+    right: -40%;
+    right: -12px;
     top: 0;
   }
   /* & > span {

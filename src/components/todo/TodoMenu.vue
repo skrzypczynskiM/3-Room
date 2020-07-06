@@ -7,14 +7,20 @@
     >
       Edit
     </li>
-    <li class="menu-item" :class="{ active: isMenuOpen }">New Day</li>
+    <li
+      v-on:click="resetAllTodos"
+      class="menu-item"
+      :class="{ active: isMenuOpen }"
+    >
+      New Day
+    </li>
   </ul>
 </template>
 
 <script>
 export default {
   name: 'TodoMenu',
-  props: ['isMenuOpen', 'toggleEditMode'],
+  props: ['isMenuOpen', 'toggleEditMode', 'resetAllTodos'],
 };
 </script>
 

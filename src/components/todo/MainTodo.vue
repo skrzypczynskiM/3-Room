@@ -5,12 +5,29 @@
       <li class="menu-item" :class="{ active: isMenuOpen }">Edit</li>
       <li class="menu-item" :class="{ active: isMenuOpen }">New Day</li>
     </ul> -->
-    <TodoMenu :isMenuOpen="isMenuOpen" :toggleEditMode="toggleEditMode" />
+    <TodoMenu
+      :isMenuOpen="isMenuOpen"
+      :toggleEditMode="toggleEditMode"
+      :resetAllTodos="resetAllTodos"
+    />
     <div class="content">
       <div class="header">
         <Header />
+
         <div class="radialBar-container">
-          <RadialBar v-bind="completedTasks" />
+          <RadialBar
+            v-bind="completedTasks"
+            :top-priority-todo="topPriorityTodo"
+          />
+        </div>
+        <div class="priority-container">
+          <!-- <TodoPriority /> -->
+          <TodoPriority
+            :top-priority-todo="topPriorityTodo"
+            v-on:toggle-checkbox="toggleCheckbox($event)"
+            v-on:priority-content="updateTopPriority($event)"
+            :isEditMode="isEditMode"
+          />
         </div>
       </div>
 
@@ -33,6 +50,7 @@ import Header from './Header';
 import TodoList from './TodoList';
 import TodoMenuButton from './TodoMenuButton';
 import TodoMenu from './TodoMenu';
+import TodoPriority from './TodoPriority';
 
 import RadialBar from './RadialBar';
 
@@ -46,12 +64,19 @@ export default {
     TodoMenu,
     TodoMenuButton,
     RadialBar,
+    TodoPriority,
   },
   data() {
     return {
       // createNewTodo: false,
       isMenuOpen: false,
       isEditMode: false,
+      isResetAllTodos: false,
+
+      topPriorityTodo: {
+        title: '',
+        completed: false,
+      },
       todos: {
         'to-do': [
           {
@@ -121,11 +146,35 @@ export default {
       this.todos[todoType] = newTodos;
     },
 
+    toggleCheckbox(checkboxVal) {
+      const value = checkboxVal;
+      this.topPriorityTodo.completed = value;
+    },
+
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
     },
     toggleEditMode() {
       this.isEditMode = !this.isEditMode;
+    },
+    togglePriorityTask() {
+      this.isEditMode = !this.isEditMode;
+    },
+    updateTopPriority(updatedVal) {
+      const value = updatedVal;
+      this.topPriorityTodo.title = value;
+    },
+
+    resetAllTodos() {
+      // console.log('before: ', this.todos, value);
+      // this.todos = { 'to-do': [], 'place-to-go': [], 'people-to-speak': [] };
+      // this.topPriorityTodo = {
+      //   title: '',
+      //   completed: false,
+      // };
+
+      // console.log('after: ', this.todos);
+      this.isResetAllTodos = !this.isResetAllTodos;
     },
   },
 
@@ -142,10 +191,28 @@ export default {
         });
       });
 
+      if (this.topPriorityTodo.title) {
+        allTasks++;
+        if (this.topPriorityTodo.completed) {
+          completedTasks++;
+        }
+      }
+
       isDayComplete = allTasks === completedTasks && allTasks > 0;
-      console.log();
 
       return { allTasks, completedTasks, isDayComplete };
+    },
+  },
+
+  watch: {
+    isResetAllTodos: function() {
+      if (this.isResetAllTodos)
+        this.todos = { 'to-do': [], 'place-to-go': [], 'people-to-speak': [] };
+      this.topPriorityTodo = {
+        title: '',
+        completed: false,
+      };
+      this.isResetAllTodos = false;
     },
   },
 };
@@ -158,19 +225,31 @@ export default {
 
 .content {
   background: #f5f5f5;
+  background-image: url('../../assets/todo-bg.jpg');
   border-radius: 6px;
   padding-bottom: 20px;
 }
 
 .header {
-  /* display: flex; */
-  /* justify-content: space-around; */
-  margin-bottom: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & > header {
+    align-self: flex-start;
+  }
 
   & > .radialBar-container {
     position: absolute;
-    top: 10%;
-    right: 10%;
+    /* top: 10%;
+    right: 10%; */
+    top: 1%;
+    right: 3%;
+  }
+
+  & > .priority-container {
+    margin-top: 20px;
+    margin-bottom: 10px;
   }
 }
 </style>
