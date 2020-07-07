@@ -30,6 +30,11 @@ export default {
 
   transition: all 0.3s;
 
+  @media (min-width: $laptop) {
+    width: 60px;
+    height: 60px;
+  }
+
   &:hover {
     background: #181818;
   }
@@ -38,6 +43,11 @@ export default {
     height: 2px;
     background: #fafbfb;
     margin-left: 15px;
+
+    @media (min-width: $laptop) {
+      height: 3px;
+      margin-left: 19px;
+    }
     &:first-child {
       width: 35%;
     }

@@ -42,15 +42,17 @@ label {
     position: absolute;
     top: 7px;
     left: 7px;
-    color: rgb(101, 119, 134);
+    color: $blue-weak;
     font-size: 13px;
+
+    @media (min-width: $laptop) {
+      top: 3px;
+    }
   }
 }
 
 .inputField {
-  border-bottom: 2px solid rgb(101, 119, 134);
-  /* background: darken(rgb(245, 248, 250), 10%); */
-  /* background: darken(rgb(245, 248, 250), 10%); */
+  border-bottom: 2px solid $blue-weak;
   background: #ececec;
   color: black;
   font-size: 16px;
@@ -58,6 +60,10 @@ label {
   width: 100%;
   height: 100%;
   transition: all 0.3s;
+
+  @media (min-width: $laptop) {
+    font-size: 19px;
+  }
 
   &:focus {
     border-bottom: 2px solid var(--hover-color);
@@ -75,8 +81,8 @@ label {
 .slide-fade-leave-active {
   transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
+.slide-fade-enter,
+.slide-fade-leave-to {
   transform: translateY(10px);
   opacity: 0;
 }

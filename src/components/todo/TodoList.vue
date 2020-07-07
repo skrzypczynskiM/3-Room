@@ -153,27 +153,41 @@ export default {
   -moz-box-shadow: 4px 7px 12px -6px rgba(0, 0, 0, 0.75);
   box-shadow: 4px 7px 12px -6px rgba(0, 0, 0, 0.75);
 
+  @media (min-width: $laptop) {
+    padding: 40px 20px 30px 20px;
+  }
+
   &:nth-child(2) > .todo-type {
-    background: #eb5fac;
+    background: $pinky;
   }
 
   &:nth-child(2) form .addTodoButton {
-    background: #eb5fac;
+    background: $pinky;
+
+    &:hover {
+      background: darken($pinky, 10%);
+    }
   }
 
   &:nth-child(3) > .todo-type {
-    background: #47a09d;
+    background: $blue-off;
   }
 
   &:nth-child(3) form .addTodoButton {
-    background: #47a09d;
+    background: $blue-off;
+    &:hover {
+      background: darken($blue-off, 10%);
+    }
   }
   &:nth-child(4) > .todo-type {
-    background: #e78456;
+    background: $orange-off;
   }
 
   &:nth-child(4) form .addTodoButton {
-    background: #e78456;
+    background: $orange-off;
+    &:hover {
+      background: darken($orange-off, 10%);
+    }
   }
 }
 
@@ -190,6 +204,10 @@ form {
   margin: 10px;
   font-size: 17px;
   cursor: pointer;
+
+  @media (min-width: $laptop) {
+    font-size: 21px;
+  }
 }
 
 .todo-list {
@@ -207,8 +225,17 @@ form {
   padding: 4px 8px;
   border-radius: 6px;
   color: white;
-  /* background: #eb5fac; */
+  /* background: $pinky; */
   cursor: pointer;
+  font-size: 13px;
+
+  transition: all 0.3s;
+
+  @media (min-width: $tablet) {
+    padding: 7px 10px;
+    font-size: 17px;
+    margin-top: 20px;
+  }
 }
 
 .expand-enter-active,

@@ -1,14 +1,11 @@
 <template>
   <div class="main-wrapper">
     <TodoMenuButton :toggleMenu="toggleMenu" />
-    <!-- <ul class="menu">
-      <li class="menu-item" :class="{ active: isMenuOpen }">Edit</li>
-      <li class="menu-item" :class="{ active: isMenuOpen }">New Day</li>
-    </ul>-->
     <TodoMenu
       :isMenuOpen="isMenuOpen"
       :toggleEditMode="toggleEditMode"
       :resetAllTodos="resetAllTodos"
+      :isEditMode="isEditMode"
     />
     <div class="content">
       <div class="header">
@@ -21,7 +18,6 @@
           />
         </div>
         <div class="priority-container">
-          <!-- <TodoPriority /> -->
           <TodoPriority
             :top-priority-todo="topPriorityTodo"
             v-on:toggle-checkbox="toggleCheckbox($event)"
@@ -71,7 +67,6 @@ export default {
   },
   data() {
     return {
-      // createNewTodo: false,
       isMenuOpen: false,
       isEditMode: false,
       isResetAllTodos: false,
@@ -109,7 +104,6 @@ export default {
 
       // save to localStorage
       saveTodoData('todo', 'todos', this.todos);
-      //  localStorage.setItem('todos', JSON.stringify(this.todos))
     },
 
     toggleCheckbox(checkboxVal) {
@@ -224,13 +218,31 @@ export default {
 <style lang="scss" scoped>
 .main-wrapper {
   background: #cbd3de;
+  background-image: url('../../assets/todo-bg.jpg');
+  background-size: 100%;
 }
 
 .content {
-  background: #f5f5f5;
-  background-image: url('../../assets/todo-bg.jpg');
   border-radius: 6px;
   padding-bottom: 20px;
+  width: 95%;
+
+  @media (min-width: $mobileM) {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  @media (min-width: $mobileL) {
+    width: 70%;
+  }
+
+  @media (min-width: $tablet) {
+    width: 55%;
+  }
+
+  @media (min-width: $laptop) {
+    width: 45%;
+  }
 }
 
 .header {
@@ -244,10 +256,21 @@ export default {
 
   & > .radialBar-container {
     position: absolute;
-    /* top: 10%;
-    right: 10%; */
     top: 1%;
     right: 3%;
+
+    @media (min-width: $mobileL) {
+      top: 2%;
+      right: 10%;
+    }
+
+    @media (min-width: 590px) {
+      right: 6%;
+    }
+
+    @media (min-width: $laptop) {
+      right: 25%;
+    }
   }
 
   & > .priority-container {

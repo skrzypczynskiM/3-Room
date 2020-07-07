@@ -28,9 +28,21 @@ export default {
   cursor: pointer;
   transition: all 0.3s;
 
+  @media (min-width: $laptop) {
+    top: 10%;
+    border: 2px solid #909090;
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+  }
+
   &:hover {
     border: 1px solid darken(#909090, 20%);
     color: darken(#696969, 20%);
+
+    @media (min-width: $laptop) {
+      border: 2px solid darken(#909090, 20%);
+    }
   }
 }
 </style>

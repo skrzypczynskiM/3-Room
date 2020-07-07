@@ -55,6 +55,10 @@ export default {
   align-items: center;
   margin: 5px 10px;
 
+  @media (min-width: $laptop) {
+    margin: 10px 10px;
+  }
+
   & label {
     display: flex;
     justify-content: center;
@@ -81,7 +85,7 @@ export default {
     display: none;
     position: absolute;
 
-    top: -3%;
+    top: -6%;
     right: 0;
     font-size: 16px;
     color: rgb(167, 167, 167);
@@ -93,6 +97,13 @@ export default {
     cursor: pointer;
 
     transition: all 0.3s ease-in-out;
+
+    @media (min-width: $laptop) {
+      font-size: 24px;
+      height: 30px;
+      width: 30px;
+      top: -50%;
+    }
 
     &.editMode {
       display: flex;
@@ -112,8 +123,12 @@ export default {
   flex-direction: column;
   margin-left: 15px;
   & .title {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 600;
+
+    @media (min-width: $mobileL) {
+      font-size: 19px;
+    }
 
     &.is-complete {
       text-decoration: line-through;
@@ -121,9 +136,13 @@ export default {
   }
 
   & .note {
-    font-size: 11px;
+    font-size: 13px;
     margin-top: 3px;
     color: #b0b0b0;
+
+    @media (min-width: $mobileL) {
+      font-size: 15px;
+    }
 
     &.is-complete {
       text-decoration: line-through;
@@ -141,14 +160,24 @@ export default {
   position: absolute;
   transition: all 0.2s;
 
+  @media (min-width: $tablet) {
+    width: 17px;
+    height: 17px;
+  }
+
   & ~ svg {
     transform: scale(0);
-    fill: #4dff4d;
+    fill: $green-light;
     width: 20px;
     height: 20px;
     cursor: pointer;
     position: absolute;
     transition: all 0.2s 0.1s;
+
+    @media (min-width: $laptop) {
+      width: 27px;
+      height: 27px;
+    }
   }
 }
 

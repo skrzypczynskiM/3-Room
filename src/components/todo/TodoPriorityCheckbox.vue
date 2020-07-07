@@ -7,7 +7,13 @@
       v-on:change="toggleCheckbox"
     />
     <label for="checkbox" class="label">
-      <div class="check" :class="{ completed: checked }"></div>
+      <div
+        class="check"
+        :class="{
+          completed: checked,
+          turnoff: topPriorityTodo.title.length === 0,
+        }"
+      ></div>
       <Check :class="{ completed: checked }" />
     </label>
   </div>
@@ -18,7 +24,7 @@ import Check from '../../../icons/Check2';
 
 export default {
   name: 'Checkbox',
-  props: ['completed'],
+  props: ['completed', 'top-priority-todo'],
   data() {
     return {
       checked: false,
@@ -62,6 +68,14 @@ export default {
       position: absolute;
       transition: all 0.2s;
 
+      &.turnoff {
+        pointer-events: none;
+      }
+
+      &:hover {
+        border-color: darken(#bebebe, 20%);
+      }
+
       &.completed {
         transform: scale(0);
       }
@@ -70,7 +84,7 @@ export default {
     & > svg {
       position: absolute;
       top: -25px;
-      fill: #4dff4d;
+      fill: $green-light;
       width: 50px;
       height: 50px;
       cursor: pointer;

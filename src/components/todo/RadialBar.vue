@@ -1,6 +1,6 @@
 <template>
   <radial-progress-bar
-    :diameter="100"
+    :diameter="selectGraphSize"
     :completed-steps="completedTasks"
     :total-steps="allTasks"
     :animateSpeed="500"
@@ -9,12 +9,6 @@
     innerStrokeColor="#C8C8C8"
     :fps="320"
   >
-    <!-- <div v-if="isDayComplete" class="inner-text-container"> -->
-    <!--    
-      <p class="inner-text">Congrats!</p>
-
-      <p class="inner-text">All tasks done</p> -->
-    <!-- </div> -->
     <div class="inner-text-container">
       <div>
         <p class="percent">
@@ -37,6 +31,7 @@ export default {
   data() {
     return {
       allTasksDone: false,
+      currentScreenWidth: 0,
     };
   },
   props: ['allTasks', 'completedTasks', 'isDayComplete', 'top-priority-todo'],
@@ -47,10 +42,33 @@ export default {
         return Math.floor((this.completedTasks * 100) / this.allTasks);
       else return 0;
     },
+
+    selectGraphSize() {
+      if (this.currentScreenWidth <= 360) return 100;
+      else if (this.currentScreenWidth <= 425) return 130;
+      else if (this.currentScreenWidth <= 645) return 140;
+      else if (this.currentScreenWidth <= 768) return 170;
+      else return 175;
+    },
+  },
+
+  methods: {
+    handleResize() {
+      this.currentScreenWidth = window.innerWidth;
+    },
   },
 
   components: {
     RadialProgressBar,
+  },
+
+  created() {
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+  },
+
+  destroyed() {
+    window.removeEventListener('resize', this.handleResize);
   },
 };
 </script>
@@ -68,52 +86,72 @@ export default {
   font-weight: 700;
   display: block;
 
-  /* &:last-child {
-    font-size: 13px;
-    margin-top: 5px;
-    font-weight: 600;
-  } */
+  @media (min-width: $mobileL) {
+    font-size: 14px;
+  }
+  @media (min-width: $tablet) {
+    font-size: 16px;
+  }
+
+  @media (min-width: $laptop) {
+    font-size: 17px;
+  }
 }
 
 .inner-number {
-  /* margin-top: 5px; */
   letter-spacing: 1px;
   font-weight: 700;
   display: block;
   font-size: 13px;
   text-align: center;
+
+  @media (min-width: $mobileM) {
+    font-size: 15px;
+  }
+  @media (min-width: $tablet) {
+    font-size: 20px;
+  }
 }
 
 .percent {
-  /* font-size: 34px; */
   font-size: 25px;
-
   position: relative;
   font-weight: 600;
 
-  /* &.complete {
-    font-size: 19px;
-    font-weight: 600;
-    margin-bottom: 5px;
-  } */
+  @media (min-width: $mobileM) {
+    font-size: 33px;
+  }
+
+  @media (min-width: $mobileL) {
+    font-size: 37px;
+  }
+
+  @media (min-width: $tablet) {
+    font-size: 50px;
+  }
 
   &::after {
     content: '\%';
-    /* font-size: 18px; */
     font-size: 13px;
-
     position: absolute;
-    /* right: -50%; */
-    /* right: 17%; */
     right: -40%;
     right: -12px;
     top: 0;
+
+    @media (min-width: $mobileL) {
+      font-size: 18px;
+      right: -17px;
+    }
+
+    @media (min-width: $tablet) {
+      font-size: 22px;
+      right: -20px;
+    }
+
+    @media (min-width: $laptop) {
+      top: 7px;
+      right: -18px;
+    }
   }
-  /* & > span {
-    font-size: 18px;
-    position: relative;
-    top: -10px;
-    left: -5px;
-  } */
 }
 </style>
