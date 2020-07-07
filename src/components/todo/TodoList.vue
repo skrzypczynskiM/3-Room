@@ -6,7 +6,9 @@
       :createNewTodo="createNewTodo"
     />
 
-    <div v-if="isEmpty" class="empty-todo-list">This notebook is empty</div>
+    <div v-if="isEmpty" class="empty-todo-list" v-on:click="toggleNewTodo">
+      This notebook is empty
+    </div>
 
     <ul v-else class="todo-list">
       <TodoItem
@@ -187,6 +189,7 @@ form {
   text-align: center;
   margin: 10px;
   font-size: 17px;
+  cursor: pointer;
 }
 
 .todo-list {

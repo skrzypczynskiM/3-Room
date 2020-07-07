@@ -5,11 +5,7 @@
       :completed="topPriorityTodo.completed"
       v-on:toggle-checkbox="$emit('toggle-checkbox', $event)"
     />
-    <p v-if="isTypingDone && !isEditMode" class="priority-content">
-      {{ this.topPriorityTodo.title }}
-    </p>
-    <!-- <div></div> -->
-    <form v-else>
+    <form v-if="showForm">
       <textarea
         v-on:keyup.enter="onEnter"
         type="text"
@@ -19,6 +15,10 @@
         v-on:input="$emit('priority-content', $event.target.value)"
       />
     </form>
+    <p v-else class="priority-content">
+      {{ this.topPriorityTodo.title }}
+    </p>
+    <!-- <div></div> -->
   </div>
 </template>
 
@@ -27,13 +27,26 @@ import CheckBox from './TodoPriorityCheckbox';
 
 export default {
   name: 'Note',
-  props: ['top-priority-todo', 'isEditMode'],
+  props: ['top-priority-todo', 'isEditMode', 'isPriorityTyping'],
   data() {
-    return { isTypingDone: false };
+    return {
+      isTyping: false,
+    };
   },
+
   methods: {
     onEnter() {
-      this.isTypingDone = !this.isTypingDone;
+      if (this.topPriorityTodo.title.length === 0)
+        this.isTyping = this.isPriorityTyping;
+      else this.isTyping = !this.isPriorityTyping;
+    },
+  },
+
+  computed: {
+    showForm() {
+      if (this.isEditMode) return true;
+      else if (!this.isTyping) return true;
+      else return false;
     },
   },
   components: {
@@ -93,6 +106,9 @@ form {
     letter-spacing: 0.7px;
     resize: none;
     scrollbar-width: none;
+    &:focus {
+      outline: none;
+    }
 
     &::-webkit-scrollbar {
       width: 0 !important;

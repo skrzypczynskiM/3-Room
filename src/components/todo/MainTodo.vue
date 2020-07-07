@@ -4,7 +4,7 @@
     <!-- <ul class="menu">
       <li class="menu-item" :class="{ active: isMenuOpen }">Edit</li>
       <li class="menu-item" :class="{ active: isMenuOpen }">New Day</li>
-    </ul> -->
+    </ul>-->
     <TodoMenu
       :isMenuOpen="isMenuOpen"
       :toggleEditMode="toggleEditMode"
@@ -27,6 +27,7 @@
             v-on:toggle-checkbox="toggleCheckbox($event)"
             v-on:priority-content="updateTopPriority($event)"
             :isEditMode="isEditMode"
+            :isPriorityTyping="isPriorityTyping"
           />
         </div>
       </div>
@@ -54,6 +55,8 @@ import TodoPriority from './TodoPriority';
 
 import RadialBar from './RadialBar';
 
+import { saveTodoData } from '../helperFunctions/localStorage';
+
 import { uuid } from 'vue-uuid';
 
 export default {
@@ -72,61 +75,16 @@ export default {
       isMenuOpen: false,
       isEditMode: false,
       isResetAllTodos: false,
+      isPriorityTyping: false,
 
       topPriorityTodo: {
         title: '',
         completed: false,
       },
       todos: {
-        'to-do': [
-          {
-            title: 'Make dinner',
-            note: '1pm',
-            completed: false,
-            id: 1,
-          },
-          {
-            title: 'Learn Vue',
-            note: '2pm-3.30pm',
-            completed: false,
-            id: 2,
-          },
-          {
-            title: 'Play chess',
-            note: '4pm-4.30pm',
-            completed: false,
-            id: 3,
-          },
-        ],
-        'place-to-go': [
-          {
-            title: 'Meeting with coworker',
-            note: '1pm',
-            completed: false,
-            id: 4,
-          },
-          {
-            title: 'Dinner with girlfriend',
-            note: '2pm-3.30pm',
-            completed: false,
-            id: 5,
-          },
-        ],
-
-        'people-to-speak': [
-          {
-            title: 'Call my mom',
-            note: '1pm',
-            completed: false,
-            id: 6,
-          },
-          {
-            title: 'Call friend',
-            note: '2pm-3.30pm',
-            completed: false,
-            id: 7,
-          },
-        ],
+        'to-do': [],
+        'place-to-go': [],
+        'people-to-speak': [],
       },
     };
   },
@@ -138,17 +96,29 @@ export default {
         ...newTodo,
         id,
       });
+
+      // save to localStorage
+      saveTodoData('todo', 'todos', this.todos);
+      // localStorage.setItem('todos', JSON.stringify(this.todos))
     },
 
     deleteTodoItem(payload) {
       const { todoType, id } = payload;
       const newTodos = this.todos[todoType].filter((todo) => todo.id !== id);
       this.todos[todoType] = newTodos;
+
+      // save to localStorage
+      saveTodoData('todo', 'todos', this.todos);
+      //  localStorage.setItem('todos', JSON.stringify(this.todos))
     },
 
     toggleCheckbox(checkboxVal) {
       const value = checkboxVal;
       this.topPriorityTodo.completed = value;
+
+      // save to localStorage
+      saveTodoData('todo', 'priority', this.topPriorityTodo);
+      //  localStorage.setItem('priority', JSON.stringify(this.topPriorityTodo))
     },
 
     toggleMenu() {
@@ -163,17 +133,16 @@ export default {
     updateTopPriority(updatedVal) {
       const value = updatedVal;
       this.topPriorityTodo.title = value;
+      if (this.topPriorityTodo.title.length === 0) {
+        this.isPriorityTyping = false;
+      }
+
+      // save to localStorage
+      saveTodoData('todo', 'priority', this.topPriorityTodo);
+      // localStorage.setItem('priority', JSON.stringify(this.topPriorityTodo))
     },
 
     resetAllTodos() {
-      // console.log('before: ', this.todos, value);
-      // this.todos = { 'to-do': [], 'place-to-go': [], 'people-to-speak': [] };
-      // this.topPriorityTodo = {
-      //   title: '',
-      //   completed: false,
-      // };
-
-      // console.log('after: ', this.todos);
       this.isResetAllTodos = !this.isResetAllTodos;
     },
   },
@@ -205,15 +174,49 @@ export default {
   },
 
   watch: {
-    isResetAllTodos: function() {
-      if (this.isResetAllTodos)
-        this.todos = { 'to-do': [], 'place-to-go': [], 'people-to-speak': [] };
-      this.topPriorityTodo = {
-        title: '',
-        completed: false,
-      };
-      this.isResetAllTodos = false;
+    todos: {
+      deep: true,
+      handler() {
+        console.log('SAVED!');
+        saveTodoData('todo', 'todos', this.todos);
+      },
     },
+
+    isResetAllTodos: function() {
+      console.log('watch is RUN!');
+
+      if (this.isResetAllTodos) {
+        const defaultTodos = {
+          'to-do': [],
+          'place-to-go': [],
+          'people-to-speak': [],
+        };
+
+        const defaultPriority = {
+          title: '',
+          completed: false,
+        };
+
+        this.todos = defaultTodos;
+        this.topPriorityTodo = defaultPriority;
+
+        this.isResetAllTodos = false;
+
+        // save to localStorage
+        saveTodoData('todo', 'todos', this.todos);
+        saveTodoData('todo', 'priority', this.topPriorityTodo);
+
+        this.isPriorityTyping = false;
+      }
+    },
+  },
+
+  mounted() {
+    const todo = JSON.parse(localStorage.getItem('todo'));
+    if (todo) {
+      this.todos = todo.todos;
+      this.topPriorityTodo = todo.priority;
+    }
   },
 };
 </script>
