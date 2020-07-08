@@ -219,6 +219,9 @@ export default {
   background-image: url('../../assets/todo-bg.jpg');
   background-size: 100%;
   padding: 50px 0;
+  background-attachment: fixed;
+  width: 100%;
+  height: 100%;
 
   & > .doodle {
     position: fixed;
@@ -259,17 +262,9 @@ export default {
     -moz-box-shadow: 0px 0px 33px -9px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 33px -9px rgba(0, 0, 0, 0.75);
 
-    background: #ece9e6; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-      to right,
-      #f5f5f5,
-      #ece9e6
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-      to right,
-      #f5f5f5,
-      #ece9e6
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #ece9e6;
+    background: -webkit-linear-gradient(to right, #f5f5f5, #ece9e6);
+    background: linear-gradient(to right, #f5f5f5, #ece9e6);
   }
 }
 

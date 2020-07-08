@@ -107,11 +107,11 @@ form {
     scrollbar-width: none;
 
     @media (min-width: $tablet) {
-      font-size: 18px;
+      font-size: 17px;
     }
 
-    @media (min-width: $laptop) {
-      font-size: 19px;
+    @media (min-width: $laptopL) {
+      font-size: 18px;
     }
     &:focus {
       outline: none;

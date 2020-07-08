@@ -201,7 +201,7 @@ form {
 .empty-todo-list {
   color: #4c4848;
   text-align: center;
-  margin: 10px;
+  margin: 0 10px 10px 10px;
   font-size: 17px;
   cursor: pointer;
   transition: all 0.3s;
