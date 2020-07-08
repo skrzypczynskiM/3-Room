@@ -1,6 +1,11 @@
 <template>
   <div class="doodles-container">
-    <div></div>
+    <vue-css-doodle>
+      :doodle { @grid: 20 / 100vmax; grid-gap: 4vmax; } background: #26C6DA;
+      transform: scale(@rand(.1, .9)) translate3d(@r(50px), @r(100px), 0);
+      background: hsla(@r(360), 85%, @r(70%, 90%), @r(.9)); border-radius:
+      @r(10px);
+    </vue-css-doodle>
     <img src="../../assets/doodles/3-leaves.png" alt="3 leaves" />
     <img src="../../assets/doodles/fatarrow.png" alt="fat arrow" />
     <img
@@ -14,12 +19,6 @@
     <img src="../../assets/doodles/thinarrow.png" alt="thin arrow" />
     <img src="../../assets/doodles/coffee.png" alt="coffee cup" />
     <img src="../../assets/doodles/pen.png" alt="pen" />
-    <vue-css-doodle>
-      :doodle { @grid: 20 / 100vmax; grid-gap: 4vmax; } background: #26C6DA;
-      transform: scale(@rand(.1, .9)) translate3d(@r(50px), @r(100px), 0);
-      background: hsla(@r(360), 85%, @r(70%, 90%), @r(.9)); border-radius:
-      @r(10px);
-    </vue-css-doodle>
   </div>
 </template>
 
@@ -89,12 +88,17 @@ export default {
       }
     }
     &:nth-child(3) {
-      top: 34%;
-      right: 13%;
+      top: 25%;
+      right: 6%;
+
+      @media (min-width: $mobileL) {
+        top: 34%;
+        right: 13%;
+      }
     }
     &:nth-child(4) {
       bottom: 7%;
-      right: 10%;
+      right: 20%;
 
       @media (min-width: $mobileL) {
         bottom: 7%;
@@ -128,10 +132,26 @@ export default {
       left: 16%;
     }
     &:nth-child(9) {
-      top: 27%;
-      left: 6%;
-      width: 80px;
-      height: 80px;
+      top: 17%;
+      left: 4%;
+      width: 50px;
+      height: 50px;
+      opacity: 0.5;
+      @media (min-width: $tablet) {
+        opacity: 0.8;
+        top: 27%;
+        left: 6%;
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    &:nth-child(10) {
+      left: 10%;
+
+      @media (min-width: $tablet) {
+        left: 4%;
+      }
     }
   }
 }

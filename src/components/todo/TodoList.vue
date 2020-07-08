@@ -42,7 +42,6 @@
           :id="generateId()"
           :color="chooseThemeColor()"
         />
-        <!-- <p>THE TODO title: {{ this.title }}</p> -->
         <button type="submit" class="addTodoButton">Add Task</button>
       </form>
     </transition>
@@ -218,9 +217,6 @@ form {
 
 .todo-list {
   width: 95%;
-
-  /* padding: 40px 20px; */
-  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
 }
@@ -231,10 +227,8 @@ form {
   padding: 4px 8px;
   border-radius: 6px;
   color: white;
-  /* background: $pinky; */
   cursor: pointer;
   font-size: 13px;
-
   transition: all 0.3s;
 
   @media (min-width: $tablet) {

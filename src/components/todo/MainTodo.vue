@@ -99,7 +99,6 @@ export default {
 
       // save to localStorage
       saveTodoData('todo', 'todos', this.todos);
-      // localStorage.setItem('todos', JSON.stringify(this.todos))
     },
 
     deleteTodoItem(payload) {

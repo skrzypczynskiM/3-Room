@@ -84,7 +84,6 @@ export default {
   & > .deleteButton {
     display: none;
     position: absolute;
-
     top: -6%;
     right: 0;
     font-size: 16px;
@@ -95,7 +94,6 @@ export default {
     border-radius: 50%;
     padding: 4px;
     cursor: pointer;
-
     transition: all 0.3s ease-in-out;
 
     @media (min-width: $laptop) {
@@ -109,11 +107,9 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
-      /* transform: scale(0); */
       &:hover {
         background: #e0e0e0;
         color: black;
-        /* transform: scale(1); */
       }
     }
   }

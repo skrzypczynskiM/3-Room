@@ -1,6 +1,5 @@
 <template>
   <div class="todo-type">{{ upperCaseHeader }}</div>
-  <!-- <div class="todo-type"></div> -->
 </template>
 
 <script>

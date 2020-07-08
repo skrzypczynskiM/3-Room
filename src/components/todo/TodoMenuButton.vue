@@ -27,7 +27,6 @@ export default {
   bottom: 3%;
   border: 1px solid #1b1b1b;
   cursor: pointer;
-
   transition: all 0.3s;
 
   @media (min-width: $laptop) {
