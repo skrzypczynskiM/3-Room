@@ -47,6 +47,10 @@ export default {
     @media (min-width: $mobileL) {
       width: 55px;
       height: 55px;
+      &.show {
+        opacity: 0 !important;
+        transition: all 0.3s;
+      }
     }
 
     @media (min-width: $tablet) {
@@ -64,10 +68,6 @@ export default {
       height: 140px;
     }
 
-    &.show {
-      opacity: 0 !important;
-      transition: all 0.3s;
-    }
     &:nth-child(1) {
       top: 1%;
       left: 10%;
