@@ -145,7 +145,7 @@ export default {
 <style lang="scss" scoped>
 .todo-list-container {
   position: relative;
-  margin: 38px 30px;
+  margin: 38px 20px;
   padding: 40px 20px;
   background: #fafbfb;
   border-radius: 8px;
@@ -155,6 +155,7 @@ export default {
 
   @media (min-width: $laptop) {
     padding: 40px 20px 30px 20px;
+    margin: 38px 30px;
   }
 
   &:nth-child(2) > .todo-type {
@@ -204,6 +205,11 @@ form {
   margin: 10px;
   font-size: 17px;
   cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    color: darken(#4c4848, 30%);
+  }
 
   @media (min-width: $laptop) {
     font-size: 21px;

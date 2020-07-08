@@ -24,8 +24,8 @@ export default {
   border-radius: 4px;
   position: absolute;
   font-weight: 700;
-  left: 5%;
-  top: -5%;
+  left: 17px;
+  top: -20px;
   letter-spacing: 0.7px;
 }
 </style>

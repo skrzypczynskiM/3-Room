@@ -48,7 +48,7 @@ export default {
       else if (this.currentScreenWidth <= 425) return 130;
       else if (this.currentScreenWidth <= 645) return 140;
       else if (this.currentScreenWidth <= 768) return 170;
-      else return 175;
+      else return 150;
     },
   },
 
@@ -94,7 +94,7 @@ export default {
   }
 
   @media (min-width: $laptop) {
-    font-size: 17px;
+    font-size: 15px;
   }
 }
 
@@ -127,7 +127,7 @@ export default {
   }
 
   @media (min-width: $tablet) {
-    font-size: 50px;
+    font-size: 40px;
   }
 
   &::after {
@@ -144,13 +144,13 @@ export default {
     }
 
     @media (min-width: $tablet) {
-      font-size: 22px;
-      right: -20px;
+      font-size: 20px;
+      right: -17px;
     }
 
     @media (min-width: $laptop) {
       top: 7px;
-      right: -18px;
+      right: -16px;
     }
   }
 }

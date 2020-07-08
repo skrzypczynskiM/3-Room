@@ -14,8 +14,8 @@ export default {
 <style lang="scss" scoped>
 .add-item {
   position: absolute;
-  top: 3%;
-  right: 3%;
+  top: 15px;
+  right: 15px;
   border-radius: 50%;
   border: 1px solid #909090;
   width: 23px;
@@ -29,7 +29,8 @@ export default {
   transition: all 0.3s;
 
   @media (min-width: $laptop) {
-    top: 10%;
+    top: 15px;
+    right: 15px;
     border: 2px solid #909090;
     width: 30px;
     height: 30px;

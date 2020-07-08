@@ -1,5 +1,8 @@
 <template>
   <div class="main-wrapper">
+    <div class="doodle">
+      <TodoRandomDoodles :isMenuOpen="isMenuOpen" />
+    </div>
     <TodoMenuButton :toggleMenu="toggleMenu" />
     <TodoMenu
       :isMenuOpen="isMenuOpen"
@@ -48,6 +51,7 @@ import TodoList from './TodoList';
 import TodoMenuButton from './TodoMenuButton';
 import TodoMenu from './TodoMenu';
 import TodoPriority from './TodoPriority';
+import TodoRandomDoodles from './TodoRandomDoodles';
 
 import RadialBar from './RadialBar';
 
@@ -64,6 +68,7 @@ export default {
     TodoMenuButton,
     RadialBar,
     TodoPriority,
+    TodoRandomDoodles,
   },
   data() {
     return {
@@ -112,7 +117,6 @@ export default {
 
       // save to localStorage
       saveTodoData('todo', 'priority', this.topPriorityTodo);
-      //  localStorage.setItem('priority', JSON.stringify(this.topPriorityTodo))
     },
 
     toggleMenu() {
@@ -133,7 +137,6 @@ export default {
 
       // save to localStorage
       saveTodoData('todo', 'priority', this.topPriorityTodo);
-      // localStorage.setItem('priority', JSON.stringify(this.topPriorityTodo))
     },
 
     resetAllTodos() {
@@ -171,14 +174,11 @@ export default {
     todos: {
       deep: true,
       handler() {
-        console.log('SAVED!');
         saveTodoData('todo', 'todos', this.todos);
       },
     },
 
     isResetAllTodos: function() {
-      console.log('watch is RUN!');
-
       if (this.isResetAllTodos) {
         const defaultTodos = {
           'to-do': [],
@@ -217,15 +217,25 @@ export default {
 
 <style lang="scss" scoped>
 .main-wrapper {
-  background: #cbd3de;
   background-image: url('../../assets/todo-bg.jpg');
   background-size: 100%;
+  padding: 50px 0;
+
+  & > .doodle {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+  }
 }
 
 .content {
   border-radius: 6px;
   padding-bottom: 20px;
   width: 95%;
+  position: relative;
+  z-index: 2;
 
   @media (min-width: $mobileM) {
     width: 90%;
@@ -242,6 +252,13 @@ export default {
 
   @media (min-width: $laptop) {
     width: 45%;
+    background: #f0f0f0;
+    margin: 0 auto;
+    padding: 40px 20px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0px 0px 33px -9px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 33px -9px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 33px -9px rgba(0, 0, 0, 0.75);
   }
 }
 
@@ -256,20 +273,25 @@ export default {
 
   & > .radialBar-container {
     position: absolute;
-    top: 1%;
+    top: -4%;
     right: 3%;
 
     @media (min-width: $mobileL) {
-      top: 2%;
-      right: 10%;
+      top: -2%;
+      right: -15%;
     }
 
     @media (min-width: 590px) {
       right: 6%;
     }
 
+    @media (min-width: $tablet) {
+      right: -3%;
+    }
+
     @media (min-width: $laptop) {
-      right: 25%;
+      top: 1%;
+      right: 8%;
     }
   }
 
