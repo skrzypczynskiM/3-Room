@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import Check from '../../../icons/Check2';
+import Check from '../../../../icons/Check2';
 
 export default {
   name: 'Checkbox',

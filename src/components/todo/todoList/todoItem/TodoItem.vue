@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import CheckIcon from '../../../icons/Check';
+import CheckIcon from '../../../../../icons/Check';
 
 export default {
   name: 'todo-item',

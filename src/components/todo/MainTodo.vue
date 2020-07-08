@@ -46,14 +46,14 @@
 </template>
 
 <script>
-import Header from './Header';
-import TodoList from './TodoList';
-import TodoMenuButton from './TodoMenuButton';
-import TodoMenu from './TodoMenu';
-import TodoPriority from './TodoPriority';
-import TodoRandomDoodles from './TodoRandomDoodles';
+import Header from './header/Header';
+import TodoList from './todoList/TodoList';
+import TodoMenuButton from './menu/TodoMenuButton';
+import TodoMenu from './menu/TodoMenu';
+import TodoPriority from './todoPriority/TodoPriority';
+import TodoRandomDoodles from './background/TodoRandomDoodles';
 
-import RadialBar from './RadialBar';
+import RadialBar from './progressBar/RadialBar';
 
 import { saveTodoData } from '../helperFunctions/localStorage';
 
@@ -258,6 +258,18 @@ export default {
     -webkit-box-shadow: 0px 0px 33px -9px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 0px 33px -9px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 33px -9px rgba(0, 0, 0, 0.75);
+
+    background: #ece9e6; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to right,
+      #f5f5f5,
+      #ece9e6
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to right,
+      #f5f5f5,
+      #ece9e6
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
 }
 

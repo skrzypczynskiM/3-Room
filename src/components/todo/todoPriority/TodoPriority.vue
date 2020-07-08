@@ -62,7 +62,7 @@ form {
 
 .note {
   position: relative;
-  background-image: url('../../assets/note.png');
+  background-image: url('../../../assets/note.png');
   width: 230px;
   height: 210px;
   padding: 70px 20px 40px 0px;

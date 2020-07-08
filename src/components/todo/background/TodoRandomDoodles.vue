@@ -6,19 +6,19 @@
       background: hsla(@r(360), 85%, @r(70%, 90%), @r(.9)); border-radius:
       @r(10px);
     </vue-css-doodle>
-    <img src="../../assets/doodles/3-leaves.png" alt="3 leaves" />
-    <img src="../../assets/doodles/fatarrow.png" alt="fat arrow" />
+    <img src="../../../assets/doodles/3-leaves.png" alt="3 leaves" />
+    <img src="../../../assets/doodles/fatarrow.png" alt="fat arrow" />
     <img
-      src="../../assets/doodles/cross.png"
+      src="../../../assets/doodles/cross.png"
       alt="cross"
       :class="{ show: isMenuOpen }"
     />
-    <img src="../../assets/doodles/notebook.png" alt="notebook" />
-    <img src="../../assets/doodles/pencil.png" alt="pencil" />
-    <img src="../../assets/doodles/ruler.png" alt="ruler" />
-    <img src="../../assets/doodles/thinarrow.png" alt="thin arrow" />
-    <img src="../../assets/doodles/coffee.png" alt="coffee cup" />
-    <img src="../../assets/doodles/pen.png" alt="pen" />
+    <img src="../../../assets/doodles/notebook.png" alt="notebook" />
+    <img src="../../../assets/doodles/pencil.png" alt="pencil" />
+    <img src="../../../assets/doodles/ruler.png" alt="ruler" />
+    <img src="../../../assets/doodles/thinarrow.png" alt="thin arrow" />
+    <img src="../../../assets/doodles/coffee.png" alt="coffee cup" />
+    <img src="../../../assets/doodles/pen.png" alt="pen" />
   </div>
 </template>
 
@@ -65,7 +65,7 @@ export default {
     }
 
     &.show {
-      opacity: 0;
+      opacity: 0 !important;
       transition: all 0.3s;
     }
     &:nth-child(1) {
@@ -97,10 +97,13 @@ export default {
       }
     }
     &:nth-child(4) {
-      bottom: 7%;
-      right: 20%;
+      top: 40%;
+      right: 3%;
+      opacity: 0.6;
 
       @media (min-width: $mobileL) {
+        top: unset;
+        opacity: 0.8;
         bottom: 7%;
         right: 10%;
       }
@@ -128,11 +131,23 @@ export default {
       left: 10%;
     }
     &:nth-child(8) {
-      top: 40%;
-      left: 16%;
+      bottom: 7%;
+      left: 30%;
+      opacity: 0.6;
+      width: 30px;
+      height: 30px;
+
+      @media (min-width: $tablet) {
+        opacity: 0.8;
+        bottom: unset;
+        top: 40%;
+        left: 16%;
+        width: 50px;
+        height: 50px;
+      }
     }
     &:nth-child(9) {
-      top: 17%;
+      top: 19%;
       left: 4%;
       width: 50px;
       height: 50px;
@@ -148,7 +163,7 @@ export default {
 
     &:nth-child(10) {
       left: 10%;
-
+      top: 0;
       @media (min-width: $tablet) {
         left: 4%;
       }

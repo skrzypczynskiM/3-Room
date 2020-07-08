@@ -49,10 +49,10 @@
 </template>
 
 <script>
-import TodoItem from './TodoItem';
+import TodoItem from './todoItem/TodoItem';
 import TodoListHeader from './TodoListHeader';
-import TodoItemAdd from './TodoItemAdd';
-import TodoItemInput from './TodoItemInput';
+import TodoItemAdd from './todoItem/TodoItemAdd';
+import TodoItemInput from './todoItem/TodoItemInput';
 
 import { uuid } from 'vue-uuid';
 
