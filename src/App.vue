@@ -1,16 +1,8 @@
 <template>
   <div id="app">
-    <Todo></Todo>
+    <router-view />
   </div>
 </template>
-
-<script>
-import Todo from './components/todo/MainTodo';
-export default {
-  name: 'App',
-  components: { Todo },
-};
-</script>
 
 <style>
 *,

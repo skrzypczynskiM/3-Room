@@ -5,14 +5,18 @@
       :class="{ active: isMenuOpen }"
       v-on:click="toggleEditMode"
     >
-      <span>{{ this.isEditMode ? 'Save' : 'Edit' }}</span>
+      <a>{{ this.isEditMode ? 'Save' : 'Edit' }}</a>
     </li>
     <li
       v-on:click="resetAllTodos"
       class="menu-item"
       :class="{ active: isMenuOpen }"
     >
-      <span>New Day</span>
+      <a>New Day</a>
+    </li>
+
+    <li class="menu-item" :class="{ active: isMenuOpen }">
+      <router-link to="/motivation-room">Motivation Room</router-link>
     </li>
   </ul>
 </template>
@@ -46,13 +50,18 @@ export default {
     cursor: pointer;
     opacity: 0;
     color: black;
-    & > span {
+    margin-bottom: 8px;
+
+    & > a {
       @media (min-width: $laptop) {
         border-left: 3px solid transparent;
         display: inline-block;
         padding-left: 5px;
         transition: all 0.3s ease;
         width: 200px;
+        text-decoration: none;
+        color: black;
+        line-height: 1.1;
 
         &:hover {
           padding-left: 20px;
@@ -63,7 +72,7 @@ export default {
     }
 
     @media (min-width: $laptop) {
-      font-size: 30px;
+      font-size: 26px;
     }
 
     &:first-child {
@@ -75,8 +84,16 @@ export default {
       }
     }
 
-    &:last-child {
+    &:nth-child(2) {
       transition: all 0.2s cubic-bezier(0.95, 0.05, 0.795, 0.035) 0.2s;
+      &.active {
+        transform: translateY(10px);
+        opacity: 1;
+      }
+    }
+
+    &:nth-child(3) {
+      transition: all 0.2s cubic-bezier(0.95, 0.05, 0.795, 0.035) 0.4s;
       &.active {
         transform: translateY(10px);
         opacity: 1;

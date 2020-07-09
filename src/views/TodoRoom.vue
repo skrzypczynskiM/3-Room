@@ -1,5 +1,6 @@
 <template>
   <div class="main-wrapper">
+    <!-- <router-link to="/bar">Go to Bar</router-link> -->
     <div class="doodle">
       <TodoRandomDoodles :isMenuOpen="isMenuOpen" />
     </div>
@@ -46,21 +47,21 @@
 </template>
 
 <script>
-import Header from './header/Header';
-import TodoList from './todoList/TodoList';
-import TodoMenuButton from './menu/TodoMenuButton';
-import TodoMenu from './menu/TodoMenu';
-import TodoPriority from './todoPriority/TodoPriority';
-import TodoRandomDoodles from './background/TodoRandomDoodles';
+import Header from '../components/todo/header/Header';
+import TodoList from '../components/todo/todoList/TodoList';
+import TodoMenuButton from '../components/todo/menu/TodoMenuButton';
+import TodoMenu from '../components/todo/menu/TodoMenu';
+import TodoPriority from '../components/todo/todoPriority/TodoPriority';
+import TodoRandomDoodles from '../components/todo/background/TodoRandomDoodles';
 
-import RadialBar from './progressBar/RadialBar';
+import RadialBar from '../components/todo/progressBar/RadialBar';
 
-import { saveTodoData } from '../helperFunctions/localStorage';
+import { saveTodoData } from '../components/helperFunctions/localStorage';
 
 import { uuid } from 'vue-uuid';
 
 export default {
-  name: 'MainTodo',
+  name: 'TodoRoom',
   components: {
     Header,
     TodoList,
@@ -216,7 +217,7 @@ export default {
 
 <style lang="scss" scoped>
 .main-wrapper {
-  background-image: url('../../assets/todo-bg.jpg');
+  background-image: url('../assets/todo-bg.jpg');
   background-size: 100%;
   padding: 50px 0;
   background-attachment: fixed;

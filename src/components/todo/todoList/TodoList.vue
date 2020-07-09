@@ -1,6 +1,6 @@
 <template>
   <div class="todo-list-container">
-    <TodoListHeader v-bind:type-of-todo="todoType" />
+    <TodoListHeader :type-of-todo="todoType" />
     <TodoItemAdd
       :toggleNewTodo="toggleNewTodo"
       :createNewTodo="createNewTodo"
@@ -12,9 +12,9 @@
 
     <ul v-else class="todo-list">
       <TodoItem
-        v-bind:key="todo.id"
+        :key="todo.id"
         v-for="todo in todoList"
-        v-bind:todo="todo"
+        :todo="todo"
         :isEditMode="isEditMode"
         :todo-type="todoType"
         v-on:delete-todo="

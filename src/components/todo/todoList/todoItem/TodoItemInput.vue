@@ -2,7 +2,7 @@
   <transition name="slide-fade">
     <label :for="id" class="input-container">
       <input
-        v-bind:value="value"
+        :value="value"
         v-on:input="$emit('input', $event.target.value)"
         type="text"
         :id="id"

@@ -10,19 +10,19 @@
       >
       <input
         type="checkbox"
-        v-bind:id="todo.id"
+        :id="todo.id"
         v-on:change="isComplete"
-        v-bind:checked="todo.completed"
+        :checked="todo.completed"
       />
-      <label v-bind:for="todo.id"
+      <label :for="todo.id"
         ><div class="circle"></div>
         <CheckIcon />
       </label>
       <div class="todo-content">
-        <p class="title" v-bind:class="{ 'is-complete': todo.completed }">
+        <p class="title" :class="{ 'is-complete': todo.completed }">
           {{ todo.title }}
         </p>
-        <span class="note" v-bind:class="{ 'is-complete': todo.completed }">{{
+        <span class="note" :class="{ 'is-complete': todo.completed }">{{
           todo.note
         }}</span>
       </div>
