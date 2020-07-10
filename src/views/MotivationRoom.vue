@@ -1,13 +1,43 @@
 <template>
-  <div>
+  <div class="main-wrapper">
     GELLO THERO
-    <router-link to="/foo">Go to Foo</router-link>
-    <router-link to="/bar">Go to Bar</router-link>
+    <router-link to="/">Todo Room</router-link>
+    <SelectOption v-if="step === 1" />;
   </div>
 </template>
 
 <script>
-export default {};
+import SelectOption from '../components/motivationRoom/step1/SelectOption';
+
+export default {
+  name: 'MotivationRoom',
+  data() {
+    return {
+      step: 1,
+    };
+  },
+  methods: {
+    // renderStep() {
+    //   switch (this.step) {
+    //     case 1:
+    //       return <SelectOption />;
+    //   }
+    // },
+
+    addStep() {
+      this.step++;
+    },
+  },
+
+  components: {
+    SelectOption,
+  },
+};
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.main-wrapper {
+  position: relative;
+  height: 100vh;
+}
+</style>

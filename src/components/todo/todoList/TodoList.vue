@@ -211,7 +211,7 @@ form {
   }
 
   @media (min-width: $laptop) {
-    font-size: 21px;
+    font-size: 19px;
   }
 }
 

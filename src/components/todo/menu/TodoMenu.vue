@@ -8,7 +8,7 @@
       <a>{{ this.isEditMode ? 'Save' : 'Edit' }}</a>
     </li>
     <li
-      v-on:click="resetAllTodos"
+      v-on:click="$emit('reset')"
       class="menu-item"
       :class="{ active: isMenuOpen }"
     >
@@ -24,7 +24,7 @@
 <script>
 export default {
   name: 'TodoMenu',
-  props: ['isMenuOpen', 'toggleEditMode', 'resetAllTodos', 'isEditMode'],
+  props: ['isMenuOpen', 'toggleEditMode', 'isEditMode'],
 };
 </script>
 
@@ -53,14 +53,15 @@ export default {
     margin-bottom: 8px;
 
     & > a {
+      text-decoration: none;
+      color: black;
       @media (min-width: $laptop) {
         border-left: 3px solid transparent;
         display: inline-block;
         padding-left: 5px;
         transition: all 0.3s ease;
         width: 200px;
-        text-decoration: none;
-        color: black;
+
         line-height: 1.1;
 
         &:hover {

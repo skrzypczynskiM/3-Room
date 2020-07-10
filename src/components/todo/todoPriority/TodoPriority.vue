@@ -12,8 +12,9 @@
         type="text"
         rows="5"
         placeholder="Today's priority..."
-        :value="topPriorityTodo.title"
-        v-on:input="$emit('priority-content', $event.target.value)"
+        v-on:input="updatePriority($event)"
+        ref="input"
+        v-model="title"
       />
     </form>
     <p v-else class="priority-content">
@@ -27,30 +28,67 @@ import CheckBox from './TodoPriorityCheckbox';
 
 export default {
   name: 'Note',
-  props: ['top-priority-todo', 'isEditMode', 'isPriorityTyping'],
+  props: [
+    'top-priority-todo',
+    'isEditMode',
+    'isPriorityTyping',
+    'isResetAllTodos',
+  ],
   data() {
     return {
       isTyping: false,
+      title: '',
     };
   },
 
   methods: {
     onEnter() {
-      if (this.topPriorityTodo.title.length === 0)
-        this.isTyping = this.isPriorityTyping;
-      else this.isTyping = !this.isPriorityTyping;
+      if (this.topPriorityTodo.title.length === 0) return;
+      else {
+        if (!this.isEditMode) {
+          this.isTyping = false;
+        }
+      }
+    },
+
+    updatePriority(e) {
+      const value = e.target.value;
+      this.$emit('priority-content', value);
+      if (value.length === 0) {
+        this.typing = true;
+      }
     },
   },
 
   computed: {
     showForm() {
       if (this.isEditMode) return true;
-      else if (!this.isTyping) return true;
+      else if (this.isTyping) return true;
       else return false;
     },
   },
+  mounted() {
+    if (this.title) {
+      this.isTyping = true;
+      if (this.topPriorityTodo.title.length > 0)
+        this.title = this.topPriorityTodo.title;
+    }
+  },
+
   components: {
     CheckBox,
+  },
+
+  watch: {
+    isEditMode: function(newVal, oldVal) {
+      if (oldVal && !newVal && this.isTyping) {
+        this.isTyping = false;
+      }
+    },
+    isResetAllTodos: function() {
+      this.isTyping = true;
+      this.title = '';
+    },
   },
 };
 </script>

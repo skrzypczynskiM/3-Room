@@ -10,6 +10,7 @@
       :toggleEditMode="toggleEditMode"
       :resetAllTodos="resetAllTodos"
       :isEditMode="isEditMode"
+      v-on:reset="resetAllTodos"
     />
     <div class="content">
       <div class="header">
@@ -28,6 +29,7 @@
             v-on:priority-content="updateTopPriority($event)"
             :isEditMode="isEditMode"
             :isPriorityTyping="isPriorityTyping"
+            :isResetAllTodos="isResetAllTodos"
           />
         </div>
       </div>
@@ -76,7 +78,7 @@ export default {
       isMenuOpen: false,
       isEditMode: false,
       isResetAllTodos: false,
-      isPriorityTyping: false,
+      isPriorityTyping: true,
 
       topPriorityTodo: {
         title: '',
@@ -125,22 +127,48 @@ export default {
     toggleEditMode() {
       this.isEditMode = !this.isEditMode;
     },
-    togglePriorityTask() {
-      this.isEditMode = !this.isEditMode;
-    },
+
     updateTopPriority(updatedVal) {
       const value = updatedVal;
       this.topPriorityTodo.title = value;
       if (this.topPriorityTodo.title.length === 0) {
-        this.isPriorityTyping = false;
+        this.isPriorityTyping = true;
       }
 
       // save to localStorage
       saveTodoData('todo', 'priority', this.topPriorityTodo);
     },
 
-    resetAllTodos() {
+    toggleReset() {
       this.isResetAllTodos = !this.isResetAllTodos;
+    },
+
+    resetAllTodos() {
+      this.isResetAllTodos = true;
+
+      const defaultTodos = {
+        'to-do': [],
+        'place-to-go': [],
+        'people-to-speak': [],
+      };
+
+      const defaultPriority = {
+        title: '',
+        completed: false,
+      };
+
+      this.todos = defaultTodos;
+      this.topPriorityTodo = defaultPriority;
+
+      // save to localStorage
+      saveTodoData('todo', 'todos', this.todos);
+      saveTodoData('todo', 'priority', this.topPriorityTodo);
+
+      this.isPriorityTyping = true;
+
+      const todoInstance = this;
+
+      setTimeout(todoInstance.toggleReset, 100);
     },
   },
 
@@ -176,32 +204,6 @@ export default {
       handler() {
         saveTodoData('todo', 'todos', this.todos);
       },
-    },
-
-    isResetAllTodos: function() {
-      if (this.isResetAllTodos) {
-        const defaultTodos = {
-          'to-do': [],
-          'place-to-go': [],
-          'people-to-speak': [],
-        };
-
-        const defaultPriority = {
-          title: '',
-          completed: false,
-        };
-
-        this.todos = defaultTodos;
-        this.topPriorityTodo = defaultPriority;
-
-        this.isResetAllTodos = false;
-
-        // save to localStorage
-        saveTodoData('todo', 'todos', this.todos);
-        saveTodoData('todo', 'priority', this.topPriorityTodo);
-
-        this.isPriorityTyping = false;
-      }
     },
   },
 
@@ -306,5 +308,29 @@ export default {
     margin-top: 20px;
     margin-bottom: 10px;
   }
+}
+
+/* .fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+} */
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
 }
 </style>

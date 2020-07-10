@@ -3,18 +3,18 @@
     <input
       type="checkbox"
       id="checkbox"
-      :checked="checked"
+      :checked="completed"
       v-on:change="toggleCheckbox"
     />
     <label for="checkbox" class="label">
       <div
         class="check"
         :class="{
-          completed: checked,
+          completed: completed,
           turnoff: topPriorityTodo.title.length === 0,
         }"
       ></div>
-      <Check :class="{ completed: checked }" />
+      <Check :class="{ completed: completed }" />
     </label>
   </div>
 </template>
