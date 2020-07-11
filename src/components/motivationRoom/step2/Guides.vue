@@ -1,11 +1,11 @@
 <template>
-  <div>Guru Item</div>
+  <div>
+    MY GUIDE
+  </div>
 </template>
 
 <script>
-export default {
-  name: 'GuruItem',
-};
+export default {};
 </script>
 
 <style lang="scss" scoped></style>

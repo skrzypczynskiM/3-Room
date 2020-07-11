@@ -28,7 +28,6 @@
             v-on:toggle-checkbox="toggleCheckbox($event)"
             v-on:priority-content="updateTopPriority($event)"
             :isEditMode="isEditMode"
-            :isPriorityTyping="isPriorityTyping"
             :isResetAllTodos="isResetAllTodos"
           />
         </div>
@@ -78,7 +77,6 @@ export default {
       isMenuOpen: false,
       isEditMode: false,
       isResetAllTodos: false,
-      isPriorityTyping: true,
 
       topPriorityTodo: {
         title: '',
@@ -131,9 +129,6 @@ export default {
     updateTopPriority(updatedVal) {
       const value = updatedVal;
       this.topPriorityTodo.title = value;
-      if (this.topPriorityTodo.title.length === 0) {
-        this.isPriorityTyping = true;
-      }
 
       // save to localStorage
       saveTodoData('todo', 'priority', this.topPriorityTodo);
@@ -163,8 +158,6 @@ export default {
       // save to localStorage
       saveTodoData('todo', 'todos', this.todos);
       saveTodoData('todo', 'priority', this.topPriorityTodo);
-
-      this.isPriorityTyping = true;
 
       const todoInstance = this;
 

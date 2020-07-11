@@ -28,12 +28,7 @@ import CheckBox from './TodoPriorityCheckbox';
 
 export default {
   name: 'Note',
-  props: [
-    'top-priority-todo',
-    'isEditMode',
-    'isPriorityTyping',
-    'isResetAllTodos',
-  ],
+  props: ['top-priority-todo', 'isEditMode', 'isResetAllTodos'],
   data() {
     return {
       isTyping: false,
