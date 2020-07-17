@@ -8,6 +8,7 @@
           :class="{ appear: loadImage }"
         />
       </div>
+
       <div class="guide-media-container">
         <h3 class="guide" :class="{ appear: loadMedia }">Will Smith</h3>
         <p class="quote" :class="{ appear: loadMedia }">
@@ -25,7 +26,10 @@
       </div>
     </div>
 
-    <div class="video-section" :class="{ appear: videoClicked }">
+    <div
+      class="video-section"
+      :class="{ appear: videoClicked, hide: moveToQuotes }"
+    >
       <span class="back" v-on:click="toggleVideo"><BackIcon /></span>
       <div class="video-container">
         <iframe
@@ -35,9 +39,20 @@
           allowfullscreen
         ></iframe>
       </div>
-      <p class="moreMotivation" :class="{ appear: loadMoreMotivation }">
-        Need more motivation
-      </p>
+      <button
+        class="moreMotivation"
+        :class="{ appear: showQuestion }"
+        v-on:click="toggleNextStep"
+      >
+        Cement your motivation
+      </button>
+    </div>
+
+    <div class="quotes-section" :class="{ appear: moveToQuotes }">
+      <QuotesCarousel />
+      <router-link to="/">
+        <button class="pulsingButton">Let's get back to work!</button>
+      </router-link>
     </div>
   </div>
 </template>
@@ -47,33 +62,36 @@ import PlayIcon from '../../../../icons/Play';
 import TvIcon from '../../../../icons/Tv';
 import BackIcon from '../../../../icons/Back';
 
+import QuotesCarousel from './QuotesCarousel';
+
 export default {
   name: 'GuideTempalte',
   props: ['loadImage', 'loadMedia'],
   data() {
     return {
       videoClicked: false,
-      videoState: 'init',
+      showQuestion: false,
+      moveToQuotes: false,
     };
   },
 
   methods: {
     toggleVideo() {
-      console.log('clicked!');
-
       this.videoClicked = !this.videoClicked;
     },
 
-    toggleVideoState() {
-      if (this.videoState === 'init') this.videoState = 'start';
-      else if (this.videoState === 'start') this.videoState = 'stop';
-      else if (this.videoState === 'stop') return;
+    toggleNextStep() {
+      this.moveToQuotes = !this.moveToQuotes;
     },
   },
+
+  mounted() {
+    setTimeout(() => (this.showQuestion = !this.showQuestion), 10000);
+  },
+
   computed: {
     loadMoreMotivation() {
-      if (this.videoState === 'stop') return true;
-      else return false;
+      return this.showQuestion;
     },
   },
 
@@ -81,6 +99,7 @@ export default {
     PlayIcon,
     TvIcon,
     BackIcon,
+    QuotesCarousel,
   },
 };
 </script>
@@ -179,18 +198,12 @@ export default {
       width: 100%;
       height: 100%;
       transition: all 0.3s;
-      /* &:hover {
-        fill: lighten(#e50914, 10%);
-      } */
     }
     & > svg:last-child {
       fill: #ef5482;
       position: absolute;
       width: 30%;
       height: 30%;
-      /* top: 45%;
-      left: 50%;
-      transform: translate(-50%, -45%); */
       top: 30%;
       left: 0;
       right: 0;
@@ -215,6 +228,7 @@ export default {
   opacity: 0;
   background: rgba(50, 50, 50, 0.5);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   transition: all 0.8s ease;
@@ -222,6 +236,10 @@ export default {
   &.appear {
     transform: translateX(0);
     opacity: 1;
+  }
+
+  &.hide {
+    opacity: 0;
   }
 
   & > .back {
@@ -256,17 +274,111 @@ export default {
   }
 
   & .moreMotivation {
-    font-size: 21px;
+    position: absolute;
+    bottom: 35px;
+    right: 35px;
+    padding: 8px 12px;
+    font-weight: 600;
+    width: 160px;
+    font-size: 18px;
     color: white;
+    border: 2px solid transparent;
+    border: 2px solid #c51046;
+    background: black;
+    background: #1a1a1d;
+    background: #c51046;
+    cursor: pointer;
+
     transform: translateY(20px);
+    border-radius: 6px;
     opacity: 0;
 
     transition: all 0.3s;
+
+    &:hover {
+      background: darken(#c51046, 10%);
+    }
 
     &.appear {
       transform: translateY(0);
       opacity: 1;
     }
+  }
+}
+
+.quotes-section {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  transform: translateX(100%);
+  opacity: 0;
+  background: rgba(50, 50, 50, 0.5);
+  display: flex;
+  z-index: -1;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  transition: all 0.8s ease;
+
+  &.appear {
+    z-index: 0;
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Basic button styling */
+
+.pulsingButton {
+  cursor: pointer;
+  font-size: 21px;
+  /* width: 220px; */
+  text-align: center;
+  white-space: nowrap;
+  display: block;
+  padding: 12px 10px;
+  box-shadow: 0 0 0 0 rgba(197, 16, 70, 0.7);
+  border-radius: 10px;
+  background-color: #c51046;
+  -webkit-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -moz-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -ms-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  color: #ffffff;
+  transition: all 300ms ease-in-out;
+  &:hover {
+    -webkit-animation: none;
+    -moz-animation: none;
+    -ms-animation: none;
+    animation: none;
+    color: #ffffff;
+  }
+}
+/* Animation */
+
+@-webkit-keyframes pulsing {
+  to {
+    box-shadow: 0 0 0 30px rgba(232, 76, 61, 0);
+  }
+}
+
+@-moz-keyframes pulsing {
+  to {
+    box-shadow: 0 0 0 30px rgba(232, 76, 61, 0);
+  }
+}
+
+@-ms-keyframes pulsing {
+  to {
+    box-shadow: 0 0 0 30px rgba(232, 76, 61, 0);
+  }
+}
+
+@keyframes pulsing {
+  to {
+    box-shadow: 0 0 0 30px rgba(232, 76, 61, 0);
   }
 }
 </style>

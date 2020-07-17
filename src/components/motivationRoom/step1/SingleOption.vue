@@ -48,6 +48,7 @@ input[type='radio'] {
 
   &:checked ~ label {
     border: 2px solid #4c00ff;
+    border: 2px solid #ff5185;
 
     /* -webkit-box-shadow: 0px 0px 26px -7px rgba(109, 50, 247, 1);
     -moz-box-shadow: 0px 0px 26px -7px rgba(109, 50, 247, 1);
@@ -55,10 +56,15 @@ input[type='radio'] {
     & > img {
       filter: invert(20%) sepia(54%) saturate(7261%) hue-rotate(257deg)
         brightness(99%) contrast(95%);
+
+      filter: invert(44%) sepia(38%) saturate(1721%) hue-rotate(305deg)
+        brightness(103%) contrast(101%);
     }
 
     & > .title {
       color: #6d32f7;
+      color: white;
+      color: #ff5185;
     }
 
     & > .selected {
@@ -73,44 +79,64 @@ label {
   display: inline-block;
   position: relative;
   border: 2px solid #303030;
+  border: 2px solid #b0b0b0;
   border-radius: 8px;
 
   margin: 10px 20px;
   height: 130px;
-  max-width: 100px;
+  width: 100px;
 
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
   cursor: pointer;
   transition: all 0.3s;
 
   @media (min-width: $mobileL) {
     /* margin: 20px 30px; */
     height: 170px;
-    max-width: 120px;
+    width: 120px;
   }
 
   @media (min-width: $tablet) {
     margin: 20px 30px;
     height: 220px;
-    max-width: 170px;
+    width: 140px;
+  }
+
+  @media (min-width: $laptop) {
+    margin: 20px 30px;
+    height: 200px;
+    width: 150px;
+  }
+
+  @media (min-width: $laptopL) {
+    margin: 20px 30px;
+    height: 220px;
+    width: 170px;
   }
 
   &:hover {
     border: 2px solid #6d32f7;
+    border: 2px solid #ff5185;
     & > img {
       filter: invert(20%) sepia(54%) saturate(7261%) hue-rotate(257deg)
         brightness(99%) contrast(95%);
+
+      filter: invert(44%) sepia(38%) saturate(1721%) hue-rotate(305deg)
+        brightness(103%) contrast(101%);
     }
     & > .title {
       color: #6d32f7;
+      color: #ff5185;
     }
   }
 
   & > .selected {
     fill: white;
+
     width: 23px;
     height: 23px;
 
@@ -126,6 +152,7 @@ label {
 
     z-index: 10;
     background: #6d32f7;
+    background: #ff5185;
     border-radius: 50%;
 
     @media (min-width: $mobileL) {
@@ -149,6 +176,13 @@ label {
     height: 50%;
     filter: invert(9%) sepia(96%) saturate(28%) hue-rotate(314deg)
       brightness(87%) contrast(93%);
+
+    filter: invert(84%) sepia(0%) saturate(0%) hue-rotate(197deg)
+      brightness(90%) contrast(97%);
+
+    filter: invert(61%) sepia(0%) saturate(1%) hue-rotate(319deg)
+      brightness(94%) contrast(92%);
+
     transition: all 0.3s;
   }
 
@@ -157,6 +191,7 @@ label {
     font-size: 16px;
     font-weight: 600;
     color: #202020;
+    color: #909090;
     transition: all 0.3s;
 
     @media (min-width: $laptop) {

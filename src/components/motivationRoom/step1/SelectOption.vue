@@ -119,6 +119,7 @@ export default {
     #fc4a1a
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+  background: #353839;
   @media (min-width: $tablet) {
     overflow: hidden;
   }
@@ -148,7 +149,8 @@ export default {
   @media (min-width: $laptop) {
     width: 70%;
     margin: 0 auto;
-    padding: 30px 30px 0px;
+    /* padding: 30px 30px 0px; */
+    overflow: hidden;
   }
 }
 .select-container {
@@ -156,14 +158,16 @@ export default {
   flex-direction: row;
   justify-content: space-around;
   width: 100%;
-  /* height: 100%; */
+  height: 100%;
   flex-wrap: wrap;
   list-style-type: none;
   padding-bottom: 40px;
   /* padding: 30px 50px; */
+  align-content: center;
 
   @media (min-width: $laptop) {
     padding: 30px 50px;
+    overflow: hidden;
   }
 }
 .next-step {
@@ -192,6 +196,7 @@ export default {
     font-size: 40px;
     font-weight: 600;
     color: #202020;
+    color: #ff5185;
     display: inline-block;
     position: relative;
     opacity: 0;
@@ -221,12 +226,14 @@ export default {
     &.active {
       opacity: 1;
       cursor: pointer;
+      fill: #ff5185;
     }
   }
 }
 .question {
   font-size: 39px;
   color: #32f7a8;
+  color: #ff5185;
   /* margin-bottom: 30px; */
   padding: 10px 15px 30px;
 
@@ -245,6 +252,12 @@ export default {
 
   @media (min-width: $laptop) {
     font-size: 55px;
+    padding-bottom: 20px;
+  }
+
+  @media (min-width: $laptopL) {
+    font-size: 55px;
+    padding-bottom: 40px;
   }
 }
 

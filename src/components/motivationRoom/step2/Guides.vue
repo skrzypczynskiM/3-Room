@@ -64,6 +64,7 @@ export default {
   color: #fff;
   color: #ef548287;
   align-items: baseline;
+  white-space: nowrap;
   & > .desire {
     /* color: #ef5482; */
     /* color: #ef548287; */
