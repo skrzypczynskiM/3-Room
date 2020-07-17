@@ -17,18 +17,19 @@
           :id="img.id"
           :src="img.src"
           :title="img.title"
-          v-model="picked"
+          v-model="desire"
+          v-on:input="$emit('selectedDesire', desire)"
           :style="{ '--i': i }"
         />
       </transition-group>
       <transition name="slide" v-on:afterLeave="afterLeave">
         <div class="next-step" v-on:click="nextStep" v-if="!isSelected">
-          <span class="next-step-text" :class="{ active: picked.length > 0 }"
+          <span class="next-step-text" :class="{ active: desire.length > 0 }"
             >Next</span
           >
           <RightIcon
             class="next-step-arrow"
-            :class="{ active: picked.length > 0 }"
+            :class="{ active: desire.length > 0 }"
           />
         </div>
       </transition>
@@ -37,7 +38,7 @@
         v-on:click="nextStep"
         v-if="!isSelected"
         class="next-step-mobile"
-        :class="{ active: picked.length > 0 }"
+        :class="{ active: desire.length > 0 }"
       >
         Next
       </button>
@@ -53,9 +54,9 @@ import { images } from './images';
 
 export default {
   name: 'SelectOption',
+  props: ['setDesire', 'desire'],
   data() {
     return {
-      picked: '',
       isSelected: false,
       start: false,
       // items: [],
@@ -65,8 +66,10 @@ export default {
   methods: {
     nextStep() {
       this.isSelected = true;
-      // this.$emit('nextStep');
-      // this.$emit('nextStep');
+    },
+
+    updateDesire(newValue) {
+      this.desire = newValue;
     },
     toggleS() {
       this.start = !this.start;
@@ -103,7 +106,6 @@ export default {
 .main-wrapper {
   position: relative;
   width: 100%;
-
   height: 100%;
   background: #fc4a1a; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -118,11 +120,13 @@ export default {
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   @media (min-width: $tablet) {
-    /* overflow: hidden; */
+    overflow: hidden;
   }
 }
 
 .content {
+  overflow: hidden;
+
   width: 100%;
   height: 100%;
   margin: 0 auto;
@@ -144,7 +148,7 @@ export default {
   @media (min-width: $laptop) {
     width: 70%;
     margin: 0 auto;
-    padding: 30px;
+    padding: 30px 30px 0px;
   }
 }
 .select-container {
@@ -152,7 +156,7 @@ export default {
   flex-direction: row;
   justify-content: space-around;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   flex-wrap: wrap;
   list-style-type: none;
   padding-bottom: 40px;
@@ -255,10 +259,11 @@ export default {
   opacity: 0.2;
   margin: 0 0 10px;
   font-size: 21px;
-  line-height: 40px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: none;
   transition: all 0.3s;
 
   @media (min-width: $mobileL) {
@@ -276,18 +281,20 @@ export default {
   &::after {
     content: '\2192';
     position: absolute;
-    /* top: 50%; */
-    transform: translateY(-50%);
+
     right: 0;
     opacity: 0;
-    width: 21px;
-    height: 21px;
+    top: 0;
+    /* width: 21px;
+    height: 21px; */
     transition: all 0.3s;
     color: white;
+    font-size: 30px;
   }
 
   &.active {
     opacity: 1;
+    pointer-events: auto;
 
     &::after {
       opacity: 1;

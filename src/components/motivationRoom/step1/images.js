@@ -13,7 +13,7 @@ export const images = [
   },
   {
     src: 'enthusiasm.png',
-    title: 'Enthusiasm',
+    title: 'Empathy',
     id: uuid.v4(),
   },
   {
@@ -23,12 +23,12 @@ export const images = [
   },
   {
     src: 'productivity.png',
-    title: 'Productivity',
+    title: 'Discipline',
     id: uuid.v4(),
   },
   {
     src: 'struggle.png',
-    title: 'Struggle',
+    title: 'Passion',
     id: uuid.v4(),
   },
 ];

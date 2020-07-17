@@ -25,11 +25,25 @@ export default {
   border: 0;
 }
 
+* {
+  /* border: 1px solid red; */
+}
+html {
+  min-height: 100%;
+  position: relative;
+}
+
 body {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   background: #d3cce3;
   background: -webkit-linear-gradient(to right, #e9e4f0, #d3cce3);
   background: linear-gradient(to right, #e9e4f0, #d3cce3);
+  height: 100%;
+  border: 1px solid transparent;
+}
+
+#app {
+  height: 100%;
 }
 
 .fade-enter-active,
