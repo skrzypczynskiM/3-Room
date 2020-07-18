@@ -3,7 +3,7 @@
     <div class="persona-section" :class="{ hide: videoClicked }">
       <div class="guide-image-container">
         <img
-          src="../../../assets/motivationRoom/guides/will-smith.png"
+          src="../../../assets/motivationRoom/guides/robbins.png"
           alt="Will Smith"
           :class="{ appear: loadImage }"
         />
@@ -108,7 +108,7 @@ export default {
 .container {
   position: relative;
   display: inline-block;
-  height: 450px;
+  /* height: 900px; */
   width: 200px;
   background: rgba(50, 50, 50, 0.5);
   z-index: 1;
@@ -119,6 +119,7 @@ export default {
 .persona-section {
   position: relative;
   display: flex;
+  height: 100%;
   opacity: 1;
   transition: opacity 0.3s linear 0.2s;
   /* transition-delay: all 1s; */
@@ -130,10 +131,20 @@ export default {
 
 .guide-image-container {
   flex-basis: 50%;
+  position: relative;
+  text-align: center;
+
+  /* padding: 50px 20px; */
 
   & > img {
     opacity: 0;
     transform: scale(0);
+    width: 80%;
+    height: 95%;
+    /* filter: contrast(150%); */
+    /* filter: grayscale(100%); */
+    filter: grayscale(1) brightness(1.2) contrast(150%);
+
     transition: all 0.3s;
     &.appear {
       opacity: 1;

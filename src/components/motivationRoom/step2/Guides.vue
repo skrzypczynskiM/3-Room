@@ -53,6 +53,7 @@ export default {
 .step-2-wrapper {
   background-color: #ff6f69;
   background: #1a1a1d;
+  height: 100%;
 }
 
 .title {
@@ -90,6 +91,8 @@ export default {
   width: 80%;
   margin: auto;
   overflow: hidden;
+  height: 100%;
+  position: relative;
   /* display: flex;
   justify-content: center;
   align-items: center; */

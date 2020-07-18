@@ -42,6 +42,7 @@ export default {
   --color: #ffffff;
   color: var(--color);
   width: 100%;
+  height: 80%;
   position: relative;
   display: inline-block;
   transform: scale(1, 0.8);

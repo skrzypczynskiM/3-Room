@@ -269,6 +269,7 @@ export default {
   color: white;
   border-radius: 4px;
   background: #6d32f7;
+  background: #ff5185;
   opacity: 0.2;
   margin: 0 0 10px;
   font-size: 21px;

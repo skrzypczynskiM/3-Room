@@ -25,9 +25,6 @@ export default {
   border: 0;
 }
 
-* {
-  /* border: 1px solid red; */
-}
 html {
   min-height: 100%;
   position: relative;
@@ -39,7 +36,11 @@ body {
   background: -webkit-linear-gradient(to right, #e9e4f0, #d3cce3);
   background: linear-gradient(to right, #e9e4f0, #d3cce3);
   height: 100%;
-  border: 1px solid transparent;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
 #app {
@@ -138,6 +139,7 @@ video {
 
 body {
   line-height: 1;
+  display: inline-block;
 }
 
 article,

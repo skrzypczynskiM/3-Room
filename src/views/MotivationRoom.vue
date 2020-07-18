@@ -48,8 +48,8 @@ export default {
 
 <style lang="scss" scoped>
 .main-wrapper {
-  /* position: relative; */
-  /* height: 100%; */
+  position: relative;
+  height: 100%;
 }
 
 .slide-page-leave-active {
