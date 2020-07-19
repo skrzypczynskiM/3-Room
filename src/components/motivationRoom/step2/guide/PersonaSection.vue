@@ -1,6 +1,10 @@
 <template>
-  <div class="persona-section" :class="{ hide: videoClicked }">
-    <BackButton v-on:click="$emit('stage-change', 'init')" />
+  <div class="persona-section" :class="{ hide: stage !== 'guide' }">
+    <BackButton
+      backStage="init"
+      :loadMedia="loadMedia"
+      v-on:stage-change="$emit('stage-change', $event)"
+    />
     <div class="guide-image-container">
       <img :src="getImgUrl(img)" :alt="guide" :class="{ appear: loadImage }" />
     </div>
@@ -15,7 +19,7 @@
       <a
         class="video-navigation"
         :class="{ appear: loadMedia }"
-        v-on:click="$emit('next-section', $event)"
+        v-on:click="$emit('stage-change', 'video')"
       >
         <TvIcon />
         <PlayIcon />

@@ -9,6 +9,7 @@
             :loadMedia="loadMedia"
             :stage="stage"
             :desireData="getDesireData(desire)"
+            v-on:stage-change="$emit('stage-change', $event)"
           />
         </a>
       </div>

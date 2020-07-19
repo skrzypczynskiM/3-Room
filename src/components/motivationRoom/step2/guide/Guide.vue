@@ -4,11 +4,10 @@
       :loadMedia="loadMedia"
       :loadImage="loadImage"
       :stage="stage"
-      :videoClicked="videoClicked"
       :img="desireData.img"
       :guide="desireData.guide"
       :mainQuote="desireData.mainQuote"
-      v-on:next-section="toggleVideo"
+      v-on:stage-change="$emit('stage-change', $event)"
     />
 
     <VideoSection
@@ -16,13 +15,14 @@
       :stage="stage"
       :moveToQuotes="moveToQuotes"
       :url="desireData.url"
-      v-on:quoteSection="toggleNextStep"
+      v-on:stage-change="$emit('stage-change', $event)"
     />
 
     <QuotesSection
       :moveToQuotes="moveToQuotes"
       :quotes="desireData.quotes"
       :stage="stage"
+      v-on:stage-change="$emit('stage-change', $event)"
     />
   </div>
 </template>
@@ -43,13 +43,12 @@ export default {
   },
 
   methods: {
-    toggleVideo() {
-      this.videoClicked = !this.videoClicked;
-    },
-
-    toggleNextStep() {
-      this.moveToQuotes = !this.moveToQuotes;
-    },
+    // toggleVideo() {
+    //   this.videoClicked = !this.videoClicked;
+    // },
+    // toggleNextStep() {
+    //   this.moveToQuotes = !this.moveToQuotes;
+    // },
   },
 
   components: {

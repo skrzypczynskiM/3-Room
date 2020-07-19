@@ -1,9 +1,9 @@
 <template>
-  <div
-    class="video-section"
-    :class="{ appear: videoClicked, hide: moveToQuotes }"
-  >
-    <BackButton v-on:click="$emit('stage-change', 'guide')" />
+  <div class="video-section" :class="classObject">
+    <BackButton
+      backStage="guide"
+      v-on:stage-change="$emit('stage-change', $event)"
+    />
     <div class="video-container">
       <iframe
         :src="url"
@@ -12,7 +12,7 @@
         allowfullscreen
       ></iframe>
     </div>
-    <button class="moreMotivation" v-on:click="$emit('quoteSection', $event)">
+    <button class="moreMotivation" v-on:click="$emit('stage-change', 'quotes')">
       Cement your motivation
     </button>
   </div>
@@ -26,7 +26,29 @@ export default {
   data() {
     return {
       showButton: false,
+      hideDirection: '',
     };
+  },
+
+  watch: {
+    stage: function(newVal, oldVal) {
+      console.log(oldVal);
+      console.log('hey: ', newVal, oldVal);
+      if (oldVal === 'video') {
+        if (newVal === 'quotes') this.hideDirection = 'left';
+        else if (newVal === 'guide') this.hideDirection = 'right';
+      }
+    },
+  },
+
+  computed: {
+    classObject: function() {
+      return {
+        appear: this.stage === 'video',
+        'hide-left': this.stage !== 'video' && this.hideDirection === 'left',
+        'hide-right': this.stage !== 'video' && this.hideDirection === 'right',
+      };
+    },
   },
 
   mounted() {
@@ -58,9 +80,14 @@ export default {
     transform: translateX(0);
     opacity: 1;
   }
-
-  &.hide {
+  &.hide-left {
     opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  &.hide-right {
+    opacity: 0;
+    transform: translateX(100%);
   }
 
   & > .video-container {

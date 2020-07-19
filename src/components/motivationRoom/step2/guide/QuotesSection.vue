@@ -1,6 +1,12 @@
 <template>
-  <div class="quotes-section" :class="{ appear: moveToQuotes }">
-    <BackButton v-on:click="$emit('stage-change', 'video')" />
+  <div
+    class="quotes-section"
+    :class="{ appear: stage === 'quotes', hide: stage !== 'quotes' }"
+  >
+    <BackButton
+      backStage="video"
+      v-on:stage-change="$emit('stage-change', $event)"
+    />
     <QuotesCarousel :quotes="quotes" />
     <router-link to="/">
       <button class="pulsingButton" :class="{ appear: showButton }">
@@ -54,6 +60,10 @@ export default {
     z-index: 0;
     transform: translateX(0);
     opacity: 1;
+  }
+
+  &.hide {
+    opacity: 0;
   }
 }
 

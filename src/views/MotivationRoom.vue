@@ -4,12 +4,18 @@
       <SelectDesire
         v-if="step === 1"
         v-on:next-step="addStep"
+        v-on:stage-change="setStage($event)"
         :setDesire="setDesire"
         :desire="desire"
         :stage="stage"
         v-on:selected-desire="setDesire"
       />
-      <Desire v-if="step === 2" :desire="desire" :stage="stage" />
+      <Desire
+        v-if="step === 2"
+        :desire="desire"
+        :stage="stage"
+        v-on:stage-change="setStage($event)"
+      />
     </transition>
   </div>
 </template>
@@ -32,11 +38,17 @@ export default {
       this.step++;
     },
 
+    backStep() {
+      this.step--;
+    },
+
     setDesire(selectedDesire) {
       this.desire = selectedDesire;
     },
 
     setStage(stage) {
+      if (stage === 'init') this.backStep();
+
       this.stage = stage;
     },
   },

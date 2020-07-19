@@ -61,6 +61,7 @@ export default {
 
   methods: {
     nextStep() {
+      this.$emit('stage-change', 'guide');
       this.isSelected = true;
     },
 
