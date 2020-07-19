@@ -1,7 +1,11 @@
 <template>
   <div class="container">
     <a class="border-animation" :class="{ mounted: pageLoaded }">
-      <GuideTemplate :loadImage="loadImage" :loadMedia="loadMedia" />
+      <GuideTemplate
+        :loadImage="loadImage"
+        :loadMedia="loadMedia"
+        :desireData="desireData"
+      />
     </a>
   </div>
 </template>
@@ -11,7 +15,7 @@ import GuideTemplate from './GuideTemplate';
 
 export default {
   name: 'AnimationWrapper',
-  props: ['guidePresented'],
+  props: ['guidePresented', 'desireData'],
   data() {
     return {
       loadImage: false,

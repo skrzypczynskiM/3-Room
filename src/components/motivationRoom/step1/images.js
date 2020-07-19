@@ -18,7 +18,7 @@ export const images = [
   },
   {
     src: 'fullfilness.png',
-    title: 'Fulfillness',
+    title: 'Purpose',
     id: uuid.v4(),
   },
   {

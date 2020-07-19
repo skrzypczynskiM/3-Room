@@ -1,6 +1,6 @@
 import { uuid } from 'vue-uuid';
 
-export const desires = {
+export const desiresData = {
   empathy: {
     guide: 'Simon Sinek',
     url: 'https://www.youtube.com/embed/IJyNoJCAuzA',
@@ -242,7 +242,7 @@ export const desires = {
     ],
   },
 
-  'self-discipline': {
+  discipline: {
     guide: 'Will Smith',
     url: 'https://www.youtube.com/embed/ft_DXwgUXB0?start=1',
     img: 'smith.png',

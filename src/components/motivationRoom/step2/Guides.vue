@@ -5,13 +5,17 @@
       <span class="desire"> {{ desire }}</span>
     </h3>
     <div class="guide-container">
-      <GuideWrapper :guidePresented="guidePresented" />
+      <GuideWrapper
+        :guidePresented="guidePresented"
+        :desireData="getDesireData(desire)"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import GuideWrapper from './GuideWrapper';
+import { desiresData } from './desireData';
 
 export default {
   name: 'Guide',
@@ -40,6 +44,14 @@ export default {
   methods: {
     toggleView() {
       this.guidePresented = !this.guidePresented;
+    },
+    getDesireData(desire) {
+      const desireValue = desire.toLowerCase();
+
+      // const data = desiresData[desireValue];
+      // console.log('DATA: ', desireValue);
+      // console.log('desireValue: ', data[]);
+      return desiresData[desireValue];
     },
   },
 

@@ -3,17 +3,18 @@
     <div class="persona-section" :class="{ hide: videoClicked }">
       <div class="guide-image-container">
         <img
-          src="../../../assets/motivationRoom/guides/robbins.png"
-          alt="Will Smith"
+          :src="getImgUrl(desireData.img)"
+          :alt="desireData.author"
           :class="{ appear: loadImage }"
         />
       </div>
 
       <div class="guide-media-container">
-        <h3 class="guide" :class="{ appear: loadMedia }">Will Smith</h3>
+        <h3 class="guide" :class="{ appear: loadMedia }">
+          {{ desireData.guide }}
+        </h3>
         <p class="quote" :class="{ appear: loadMedia }">
-          “I don’t know what my calling is, but I want to be here for a bigger
-          reason. I strive to be like the greatest people who have ever lived.”
+          {{ desireData.mainQuote }}
         </p>
         <a
           class="video-navigation"
@@ -33,7 +34,7 @@
       <span class="back" v-on:click="toggleVideo"><BackIcon /></span>
       <div class="video-container">
         <iframe
-          src="https://www.youtube.com/embed/ft_DXwgUXB0?start=1"
+          :src="desireData.url"
           frameborder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
@@ -49,7 +50,7 @@
     </div>
 
     <div class="quotes-section" :class="{ appear: moveToQuotes }">
-      <QuotesCarousel />
+      <QuotesCarousel :quotes="desireData.quotes" />
       <router-link to="/">
         <button class="pulsingButton">Let's get back to work!</button>
       </router-link>
@@ -66,7 +67,7 @@ import QuotesCarousel from './QuotesCarousel';
 
 export default {
   name: 'GuideTempalte',
-  props: ['loadImage', 'loadMedia'],
+  props: ['loadImage', 'loadMedia', 'desireData'],
   data() {
     return {
       videoClicked: false,
@@ -82,6 +83,10 @@ export default {
 
     toggleNextStep() {
       this.moveToQuotes = !this.moveToQuotes;
+    },
+
+    getImgUrl(pic) {
+      return require('../../../assets/motivationRoom/guides/' + pic);
     },
   },
 

@@ -1,37 +1,12 @@
 <template>
   <div class="carousel-container">
     <VueSlickCarousel v-bind="getSettings">
-      <div class="quote">
+      <div class="quote" v-for="quote in quotes" :key="quote.id">
         <blockquote>
-          <p>The Way Get Started Is To Quit Talking And Begin Doing.</p>
-          <cite>Samuel Beckett</cite>
+          <p>{{ quote.quote }}</p>
+          <cite>{{ quote.author }}</cite>
         </blockquote>
       </div>
-
-      <div class="quote">
-        <blockquote>
-          <p>
-            The Pessimist Sees Difficulty In Every Opportunity. The Optimist
-            Sees Opportunity In Every Difficulty.
-          </p>
-          <cite>Winston Churchill</cite>
-        </blockquote>
-      </div>
-
-      <!-- <div class="quote">
-        “The Way Get Started Is To Quit Talking And Begin Doing.” – Walt Disney
-      </div>
-      <div class="quote">
-        “The Pessimist Sees Difficulty In Every Opportunity. The Optimist Sees
-        Opportunity In Every Difficulty.” – Winston Churchill
-      </div>
-      <div class="quote">
-        “Don’t Let Yesterday Take Up Too Much Of Today.” – Will Rogers
-      </div>
-      <div class="quote">
-        “You Learn More From Failure Than From Success. Don’t Let It Stop You.
-        Failure Builds Character.” – Unknown
-      </div> -->
     </VueSlickCarousel>
   </div>
 </template>
@@ -44,6 +19,7 @@ import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 
 export default {
   name: 'QuotesCarousel',
+  props: ['quotes'],
   components: { VueSlickCarousel },
   computed: {
     getSettings() {
@@ -55,7 +31,7 @@ export default {
         slidesToScroll: 1,
         autoplay: true,
         speed: 500,
-        autoplaySpeed: 5000,
+        autoplaySpeed: 8000,
         cssEase: 'ease',
       };
     },
