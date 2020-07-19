@@ -14,7 +14,6 @@
 <script>
 import VueSlickCarousel from 'vue-slick-carousel';
 import 'vue-slick-carousel/dist/vue-slick-carousel.css';
-// optional style for arrows & dots
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 
 export default {
@@ -24,8 +23,8 @@ export default {
   computed: {
     getSettings() {
       return {
-        arrows: false,
-        dots: false,
+        arrows: true,
+        dots: true,
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -47,9 +46,6 @@ export default {
     width: 100%;
     color: white;
     color: #ff2a69;
-    /* border: 1px solid #ff2a69; */
-    /* border: 1px solid white; */
-
     padding: 10px 15px;
 
     & blockquote {
@@ -87,9 +83,6 @@ export default {
       text-align: right;
       margin-top: 15px;
       font-size: 30px;
-      color: #ff2a69;
-      color: white;
-      color: #ef548287;
       color: #ef5482;
       &:before {
         content: '- ';

@@ -1,25 +1,22 @@
 <template>
   <div class="main-wrapper">
-    <!-- GELLO THERO -->
-    <!-- <router-link to="/">Todo Room</router-link> -->
     <transition name="slide-page">
-      <SelectOption
+      <SelectDesire
         v-if="step === 1"
-        v-on:nextStep="addStep"
+        v-on:next-step="addStep"
         :setDesire="setDesire"
         :desire="desire"
-        v-on:selectedDesire="setDesire"
-      />;
-      <!-- <transition name="right-slide-page"> -->
-      <Guides v-if="step === 2" v-on:nextStep="addStep" :desire="desire" />
-      <!-- </transition> -->
+        :stage="stage"
+        v-on:selected-desire="setDesire"
+      />
+      <Desire v-if="step === 2" :desire="desire" :stage="stage" />
     </transition>
   </div>
 </template>
 
 <script>
-import SelectOption from '../components/motivationRoom/step1/SelectOption';
-import Guides from '../components/motivationRoom/step2/Guides';
+import SelectDesire from '../components/motivationRoom/step1/SelectDesire';
+import Desire from '../components/motivationRoom/step2/Desire';
 
 export default {
   name: 'MotivationRoom',
@@ -27,6 +24,7 @@ export default {
     return {
       step: 1,
       desire: '',
+      stage: 'init',
     };
   },
   methods: {
@@ -37,11 +35,15 @@ export default {
     setDesire(selectedDesire) {
       this.desire = selectedDesire;
     },
+
+    setStage(stage) {
+      this.stage = stage;
+    },
   },
 
   components: {
-    SelectOption,
-    Guides,
+    SelectDesire,
+    Desire,
   },
 };
 </script>
@@ -85,17 +87,4 @@ export default {
 .right-slide-page-enter {
   opacity: 0;
 }
-
-/* .right-slide-page-enter-active
-.right-slide-page--leave-active 
- {
-  transition-duration: 0.5s;
-  transition-property: opacity;
-  transition-timing-function: ease;
-}
-
-.right-slide-page-enter,
-.right-slide-page-leave-active {
-  opacity: 0;
-} */
 </style>

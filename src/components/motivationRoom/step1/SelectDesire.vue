@@ -2,8 +2,6 @@
   <div class="main-wrapper">
     <div class="content">
       <h3 class="question">What do you need the most now?</h3>
-      <!-- <button v-on:click="toggleS" class="but">Start</button> -->
-
       <transition-group
         tag="ul"
         name="slide-in"
@@ -18,7 +16,7 @@
           :src="img.src"
           :title="img.title"
           v-model="desire"
-          v-on:input="$emit('selectedDesire', desire)"
+          v-on:input="$emit('selected-desire', desire)"
           :style="{ '--i': i }"
         />
       </transition-group>
@@ -53,13 +51,11 @@ import RightIcon from '../../../../icons/Right';
 import { images } from './images';
 
 export default {
-  name: 'SelectOption',
+  name: 'SelectDesire',
   props: ['setDesire', 'desire'],
   data() {
     return {
       isSelected: false,
-      start: false,
-      // items: [],
     };
   },
 
@@ -68,15 +64,9 @@ export default {
       this.isSelected = true;
     },
 
-    updateDesire(newValue) {
-      this.desire = newValue;
-    },
-    toggleS() {
-      this.start = !this.start;
-    },
-
     afterLeave() {
-      this.$emit('nextStep');
+      console.log('HEY LEAVE ALREADYY ######################');
+      this.$emit('next-step', 'dupka');
     },
   },
   computed: {
@@ -89,16 +79,6 @@ export default {
     SingleOption,
     RightIcon,
   },
-
-  // mounted() {
-  //   const interval = setInterval(() => {
-  //     if (!images.length) {
-  //       clearInterval(interval);
-  //     } else {
-  //       this.items.push(images.shift());
-  //     }
-  //   }, 600);
-  // },
 };
 </script>
 
@@ -326,27 +306,6 @@ export default {
   opacity: 1;
   transform: translate(0, -50%);
 }
-
-/* .list-complete-enter,
-.list-complete-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.list-complete-leave-active {
-  position: absolute;
-} */
-
-/* 
-.list-complete-enter,
-.list-complete-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.list-complete-leave-active {
-  position: absolute;
-} */
 
 .slide-in {
   &-move {

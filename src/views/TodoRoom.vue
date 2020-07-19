@@ -217,7 +217,7 @@ export default {
   padding: 50px 0;
   background-attachment: fixed;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
 
   & > .doodle {
     position: fixed;

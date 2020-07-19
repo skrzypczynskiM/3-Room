@@ -1,21 +1,30 @@
 <template>
-  <div class="container">
-    <a class="border-animation" :class="{ mounted: pageLoaded }">
-      <GuideTemplate
-        :loadImage="loadImage"
-        :loadMedia="loadMedia"
-        :desireData="desireData"
-      />
-    </a>
+  <div class="step-2-wrapper">
+    <Header :desire="desire" />
+    <div class="guide-wrapper">
+      <div class="container">
+        <a class="border-animation" :class="{ mounted: pageLoaded }">
+          <Guide
+            :loadImage="loadImage"
+            :loadMedia="loadMedia"
+            :stage="stage"
+            :desireData="getDesireData(desire)"
+          />
+        </a>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import GuideTemplate from './GuideTemplate';
+import Header from './Header';
+import Guide from './guide/Guide';
+
+import { desiresData } from './desireData';
 
 export default {
-  name: 'AnimationWrapper',
-  props: ['guidePresented', 'desireData'],
+  name: 'GuideWrapper',
+  props: ['desire', 'stage'],
   data() {
     return {
       loadImage: false,
@@ -23,7 +32,19 @@ export default {
       loadMedia: false,
     };
   },
-  components: { GuideTemplate },
+
+  methods: {
+    getDesireData(desire) {
+      const desireValue = desire.toLowerCase();
+      return desiresData[desireValue];
+    },
+  },
+
+  components: {
+    Header,
+    Guide,
+  },
+
   mounted() {
     setTimeout(() => (this.pageLoaded = true), 1100);
     setTimeout(() => (this.loadImage = true), 2100);
@@ -33,6 +54,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.step-2-wrapper {
+  background: #1a1a1d;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #1a1a1d;
+}
+
+.guide-wrapper {
+  width: 80%;
+  height: 100%;
+  margin: auto;
+  overflow: hidden;
+}
 .container {
   width: 100%;
   height: 100%;
@@ -178,7 +213,6 @@ export default {
 
 @keyframes background {
   to {
-    background: #555;
     background: #353839;
     text-shadow: 0 0.1em 0.1em #111;
   }
