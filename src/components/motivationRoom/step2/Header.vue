@@ -14,14 +14,15 @@ export default {
 
 <style lang="scss" scoped>
 .title {
-  font-size: 30px;
-  color: black;
-
+  font-size: 24px;
   padding: 40px 10% 12px;
-  color: #fff;
   color: #ef548287;
 
   white-space: wrap;
+
+  @media (min-width: $mobileM) {
+    font-size: 30px;
+  }
 
   @media (min-width: $mobileL) {
     font-size: 35px;
@@ -38,11 +39,15 @@ export default {
   & > .desire {
     color: #c51046;
     font-weight: 800;
-    font-size: 42px;
+    font-size: 35px;
     padding-bottom: 4px;
     padding-right: 10px;
     padding-top: 8px;
     border-bottom: 1px solid #ff2a69;
+
+    @media (min-width: $mobileM) {
+      font-size: 42px;
+    }
 
     @media (min-width: $mobileL) {
       font-size: 47px;

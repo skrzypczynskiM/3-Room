@@ -1,7 +1,6 @@
 <template>
   <span
-    class="back"
-    :class="{ appear: loadMedia || backStage !== 'init' }"
+    v-bind:class="classObject"
     v-on:click="$emit('stage-change', backStage)"
   >
     <BackIcon />
@@ -12,33 +11,36 @@
 import BackIcon from '../../../icons/Back';
 export default {
   name: 'BackButton',
-  props: ['backStage', 'loadMedia'],
+  props: ['backStage', 'loadMedia', 'direction'],
   components: {
     BackIcon,
+  },
+
+  computed: {
+    classObject: function() {
+      return {
+        back: this.direction === 'back',
+        next: this.direction === 'next',
+        appear: this.loadMedia,
+      };
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.back {
+.back,
+.next {
   position: absolute;
   bottom: 10px;
-  left: 0px;
   opacity: 0;
   z-index: 999;
-  transform: translateX(30px);
   transition: 0.4s ease;
 
   @media (min-width: $tablet) {
-    position: absolute;
     bottom: unset;
     top: 15px;
-    left: 15px;
-  }
-
-  &.appear {
-    opacity: 1;
-    transform: translateX(0);
+    /* left: 15px; */
   }
 
   & > svg {
@@ -61,6 +63,22 @@ export default {
       fill: #ef5482;
     }
   }
+}
+
+.back {
+  left: 0px;
+  transform: translateX(30px);
+  @media (min-width: $tablet) {
+    position: absolute;
+    bottom: unset;
+    top: 15px;
+    left: 15px;
+  }
+
+  &.appear {
+    opacity: 1;
+    transform: translateX(0);
+  }
 
   &::after {
     content: 'back';
@@ -76,6 +94,31 @@ export default {
 
     @media (min-width: $laptop) {
       display: none;
+    }
+  }
+}
+
+.next {
+  right: 0;
+  transform: translateX(-30px);
+  &.appear {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  & svg {
+    transform: rotateY(180deg);
+  }
+  &::before {
+    content: 'next';
+
+    color: #c51046;
+    font-size: 19px;
+    position: absolute;
+    left: -110%;
+    top: 50%;
+    transform: translateY(-50%);
+    @media (min-width: $laptop) {
+      content: '';
     }
   }
 }

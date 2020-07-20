@@ -83,12 +83,13 @@ export default {
   --color: #ffffff;
   color: var(--color);
   width: 90%;
-  height: 85%;
+  /* height: 85%; */
   position: relative;
   display: inline-block;
   transform: scale(1, 0.8);
   border: var(--border-width) solid transparent;
 
+  height: 90%;
   top: -30px;
 
   @media (min-width: $tablet) {
@@ -120,6 +121,10 @@ export default {
       animation: background calc(var(--animation-speed) / 5 * 3) forwards
         ease-in-out;
       animation-delay: calc(var(--animation-speed) / 5 * 2);
+      height: 99%;
+      @media (min-width: $laptop) {
+        height: 100%;
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="main-wrapper">
     <div class="content">
-      <h3 class="question">What do you need the most now?</h3>
+      <Title />
       <transition-group
         tag="ul"
         name="slide-in"
@@ -9,7 +9,7 @@
         appear
         :style="{ '--total': imagesArr.length }"
       >
-        <SingleOption
+        <SingleDesire
           v-for="(img, i) in imagesArr"
           :key="img.id"
           :id="img.id"
@@ -32,20 +32,20 @@
         </div>
       </transition>
 
-      <button
-        v-on:click="nextStep"
-        v-if="!isSelected"
-        class="next-step-mobile"
-        :class="{ active: desire.length > 0 }"
-      >
-        Next
-      </button>
+      <NextButton
+        :isSelected="isSelected"
+        v-on:next-step="nextStep"
+        :desire="desire"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import SingleOption from './SingleOption';
+import SingleDesire from './SingleDesire';
+import NextButton from './NextButton';
+import Title from './Title';
+
 import RightIcon from '../../../../icons/Right';
 
 import { images } from './images';
@@ -66,8 +66,7 @@ export default {
     },
 
     afterLeave() {
-      console.log('HEY LEAVE ALREADYY ######################');
-      this.$emit('next-step', 'dupka');
+      this.$emit('next-step', '');
     },
   },
   computed: {
@@ -77,7 +76,9 @@ export default {
   },
 
   components: {
-    SingleOption,
+    SingleDesire,
+    Title,
+    NextButton,
     RightIcon,
   },
 };
@@ -88,18 +89,6 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  background: #fc4a1a; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #f7b733,
-    #fc4a1a
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #f7b733,
-    #fc4a1a
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
   background: #353839;
   @media (min-width: $tablet) {
     overflow: hidden;
@@ -116,6 +105,12 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: scroll;
+  scrollbar-width: none;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 
   @media (min-width: $mobileL) {
     width: 80%;
@@ -130,7 +125,6 @@ export default {
   @media (min-width: $laptop) {
     width: 70%;
     margin: 0 auto;
-    /* padding: 30px 30px 0px; */
     overflow: hidden;
   }
 }
@@ -143,7 +137,6 @@ export default {
   flex-wrap: wrap;
   list-style-type: none;
   padding-bottom: 40px;
-  /* padding: 30px 50px; */
   align-content: center;
 
   @media (min-width: $laptop) {
@@ -163,7 +156,6 @@ export default {
     justify-content: center;
     align-items: center;
     opacity: 1;
-    /* transition: all 0.7s cubic-bezier(0.17, 0.67, 1, 1.23); */
     &:hover > .next-step-text {
       transform: translateX(10px);
     }
@@ -211,11 +203,10 @@ export default {
     }
   }
 }
-.question {
+/* .question {
   font-size: 39px;
-  color: #32f7a8;
   color: #ff5185;
-  /* margin-bottom: 30px; */
+
   padding: 10px 15px 30px;
 
   text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1),
@@ -224,7 +215,6 @@ export default {
   @media (min-width: $mobileM) {
     font-size: 41px;
     padding-bottom: 35px;
-    /* margin-bottom: 40px; */
   }
   @media (min-width: $mobileL) {
     font-size: 45px;
@@ -240,63 +230,7 @@ export default {
     font-size: 55px;
     padding-bottom: 40px;
   }
-}
-
-.next-step-mobile {
-  position: relative;
-  width: 130px;
-  height: 40px;
-  padding: 6px 8px;
-  color: white;
-  border-radius: 4px;
-  background: #6d32f7;
-  background: #ff5185;
-  opacity: 0.2;
-  margin: 0 0 10px;
-  font-size: 21px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  transition: all 0.3s;
-
-  @media (min-width: $mobileL) {
-    width: 160px;
-  }
-
-  @media (min-width: $tablet) {
-    width: 170px;
-  }
-
-  @media (min-width: $laptop) {
-    display: none;
-  }
-
-  &::after {
-    content: '\2192';
-    position: absolute;
-
-    right: 0;
-    opacity: 0;
-    top: 0;
-    /* width: 21px;
-    height: 21px; */
-    transition: all 0.3s;
-    color: white;
-    font-size: 30px;
-  }
-
-  &.active {
-    opacity: 1;
-    pointer-events: auto;
-
-    &::after {
-      opacity: 1;
-      right: 10%;
-    }
-  }
-}
+} */
 
 .slide-leave-active {
   transform: translate(100%, -50%);

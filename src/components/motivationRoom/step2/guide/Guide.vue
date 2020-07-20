@@ -11,7 +11,8 @@
     />
 
     <VideoSection
-      :videoClicked="videoClicked"
+      :loadMedia="loadMedia"
+      :guide="desireData.guide"
       :stage="stage"
       :moveToQuotes="moveToQuotes"
       :url="desireData.url"
@@ -19,6 +20,7 @@
     />
 
     <QuotesSection
+      :loadMedia="loadMedia"
       :moveToQuotes="moveToQuotes"
       :quotes="desireData.quotes"
       :stage="stage"
@@ -28,9 +30,9 @@
 </template>
 
 <script>
-import PersonaSection from './PersonaSection';
-import VideoSection from './VideoSection';
-import QuotesSection from './QuotesSection';
+import PersonaSection from './personaSection/PersonaSection';
+import VideoSection from './videoSection/VideoSection';
+import QuotesSection from './quotesSection/QuotesSection';
 
 export default {
   name: 'Guide',
@@ -40,15 +42,6 @@ export default {
       videoClicked: false,
       moveToQuotes: false,
     };
-  },
-
-  methods: {
-    // toggleVideo() {
-    //   this.videoClicked = !this.videoClicked;
-    // },
-    // toggleNextStep() {
-    //   this.moveToQuotes = !this.moveToQuotes;
-    // },
   },
 
   components: {
@@ -68,32 +61,9 @@ export default {
   z-index: 1;
   padding: 0.2em;
   border: solid 0.3em transparent;
+  height: 95%;
+  @media (min-width: $mobileM) {
+    height: 100%;
+  }
 }
-
-/* .back {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  z-index: 10;
-  opacity: 0;
-  transform: translateX(20px);
-  transition: 0.3s ease;
-
-  &.appear {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  & > svg {
-    width: 50px;
-    height: 50px;
-    fill: #fff;
-    cursor: pointer;
-    transition: all 0.3s;
-
-    &:hover {
-      fill: #ef5482;
-    }
-  }
-} */
 </style>

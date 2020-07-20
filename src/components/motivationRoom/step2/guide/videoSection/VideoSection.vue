@@ -1,9 +1,20 @@
 <template>
   <div class="video-section" :class="classObject">
+    <VideoHeader :guide="guide" />
     <BackButton
+      direction="back"
+      loadMedia="loadMedia"
       backStage="guide"
       v-on:stage-change="$emit('stage-change', $event)"
     />
+
+    <BackButton
+      direction="next"
+      loadMedia="loadMedia"
+      backStage="quotes"
+      v-on:stage-change="$emit('stage-change', $event)"
+    />
+
     <div class="video-container">
       <iframe
         :src="url"
@@ -12,17 +23,18 @@
         allowfullscreen
       ></iframe>
     </div>
-    <button class="moreMotivation" v-on:click="$emit('stage-change', 'quotes')">
-      Cement your motivation
-    </button>
+    <span class="placeholder"></span>
   </div>
 </template>
 
 <script>
-import BackButton from '../../BackButton';
+import VideoHeader from './VideoHeader';
+
+import BackButton from '../../../BackButton';
+
 export default {
   name: 'VideoSection',
-  props: ['videoClicked', 'moveToQuotes', 'url', 'stage'],
+  props: ['videoClicked', 'moveToQuotes', 'url', 'stage', 'guide', 'loadMedia'],
   data() {
     return {
       showButton: false,
@@ -55,6 +67,7 @@ export default {
     setTimeout(() => (this.showButton = !this.showButton), 10000);
   },
   components: {
+    VideoHeader,
     BackButton,
   },
 };
@@ -72,9 +85,13 @@ export default {
   background: rgba(50, 50, 50, 0.5);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   transition: all 0.8s ease;
+
+  @media (min-width: $laptop) {
+    justify-content: center;
+  }
 
   &.appear {
     transform: translateX(0);
@@ -91,48 +108,23 @@ export default {
   }
 
   & > .video-container {
-    width: 60%;
-    height: 75%;
+    width: 90%;
+    height: 30%;
     -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.75);
+    @media (min-width: $tablet) {
+      width: 60%;
+      height: 75%;
+    }
 
     & > iframe {
       height: 100%;
       width: 100%;
     }
   }
-
-  & .moreMotivation {
-    position: absolute;
-    bottom: 35px;
-    right: 35px;
-    padding: 8px 12px;
-    font-weight: 600;
-    width: 160px;
-    font-size: 18px;
-    color: white;
-    border: 2px solid transparent;
-    border: 2px solid #c51046;
-    background: black;
-    background: #1a1a1d;
-    background: #c51046;
-    cursor: pointer;
-
-    /* transform: translateY(20px); */
-    border-radius: 6px;
-    /* opacity: 0; */
-
-    transition: all 0.3s;
-
-    &:hover {
-      background: darken(#c51046, 10%);
-    }
-
-    /* &.appear {
-      transform: translateY(0);
-      opacity: 1;
-    } */
-  }
+}
+.placeholder {
+  visibility: hidden;
 }
 </style>

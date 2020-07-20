@@ -65,6 +65,7 @@ export default {
   position: relative;
   height: 100%;
   background: #353839;
+  overflow: hidden;
 }
 
 .slide-page-leave-active {
