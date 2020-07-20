@@ -123,25 +123,27 @@ export default {
   }
 }
 .forMobile {
-  background-color: #f5f6fa;
-  z-index: 550;
-  height: 100%;
-  width: 0px;
-  top: 0;
-  overflow: hidden;
-  right: 0;
-  bottom: 0;
-  position: fixed;
-  transition: all 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
-  &.active {
-    width: 100%;
+  @media (max-width: $tablet) {
+    background-color: #f5f6fa;
+    z-index: 550;
+    height: 100%;
+    width: 0px;
+    top: 0;
+    overflow: hidden;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    transition: all 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+    &.active {
+      width: 100%;
 
-    -webkit-box-shadow: -10px 0px 11px -6px #85888c;
-    -moz-box-shadow: -10px 0px 11px -6px #85888c;
-    box-shadow: -10px 0px 11px -6px #85888c;
+      -webkit-box-shadow: -10px 0px 11px -6px #85888c;
+      -moz-box-shadow: -10px 0px 11px -6px #85888c;
+      box-shadow: -10px 0px 11px -6px #85888c;
 
-    & > a {
-      font-size: 32px !important;
+      & > a {
+        font-size: 32px !important;
+      }
     }
   }
 }
