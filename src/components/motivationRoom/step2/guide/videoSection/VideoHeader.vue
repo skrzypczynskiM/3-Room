@@ -20,6 +20,7 @@ export default {
 
   @media (min-width: $mobileM) {
     font-size: 45px;
+    line-height: 1.3;
   }
 
   @media (min-width: $laptop) {

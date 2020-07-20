@@ -19,8 +19,8 @@ export default {
   font-style: italic;
 
   @media (min-width: $mobileM) {
-    font-size: 18px;
-    line-height: 1.4;
+    font-size: 20px;
+    line-height: 1.3;
   }
 
   @media (min-width: $mobileL) {

@@ -70,11 +70,11 @@ export default {
       padding: 10px;
 
       @media (min-width: $mobileM) {
-        font-size: 21px;
+        font-size: 24px;
       }
 
       @media (min-width: $mobileL) {
-        font-size: 24px;
+        font-size: 25px;
         padding: 30px;
       }
 

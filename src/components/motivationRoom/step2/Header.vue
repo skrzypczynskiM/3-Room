@@ -21,7 +21,7 @@ export default {
   white-space: wrap;
 
   @media (min-width: $mobileM) {
-    font-size: 30px;
+    font-size: 33px;
   }
 
   @media (min-width: $mobileL) {
@@ -42,7 +42,7 @@ export default {
     font-size: 35px;
     padding-bottom: 4px;
     padding-right: 10px;
-    padding-top: 8px;
+    padding-top: 12px;
     border-bottom: 1px solid #ff2a69;
 
     @media (min-width: $mobileM) {

@@ -97,7 +97,7 @@ label {
   }
 
   @media (min-width: $laptopL) {
-    margin: 20px 30px;
+    margin: 20px 50px;
     height: 220px;
     width: 170px;
   }
