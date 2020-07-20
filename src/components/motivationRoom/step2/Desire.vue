@@ -68,6 +68,7 @@ export default {
   height: 100%;
   margin: auto;
   overflow: hidden;
+  text-align: center;
 }
 .container {
   width: 100%;
@@ -81,12 +82,20 @@ export default {
   --animation-speed: 1s;
   --color: #ffffff;
   color: var(--color);
-  width: 100%;
-  height: 80%;
+  width: 90%;
+  height: 85%;
   position: relative;
   display: inline-block;
   transform: scale(1, 0.8);
   border: var(--border-width) solid transparent;
+
+  top: -30px;
+
+  @media (min-width: $tablet) {
+    top: unset;
+    width: 100%;
+    height: 80%;
+  }
 
   &:before,
   &:after {

@@ -14,22 +14,39 @@ export default {
 
 <style lang="scss" scoped>
 .title {
-  font-size: 43px;
+  font-size: 30px;
   color: black;
-  display: flex;
-  justify-content: center;
-  padding: 20px 0 0;
+
+  padding: 40px 10% 12px;
   color: #fff;
   color: #ef548287;
-  align-items: baseline;
-  white-space: nowrap;
+
+  white-space: wrap;
+
+  @media (min-width: $mobileL) {
+    font-size: 35px;
+  }
+
+  @media (min-width: $tablet) {
+    display: flex;
+    justify-content: center;
+    font-size: 43px;
+    align-items: baseline;
+    white-space: nowrap;
+    padding: 20px 0 0;
+  }
   & > .desire {
     color: #c51046;
     font-weight: 800;
-    font-size: 47px;
+    font-size: 42px;
     padding-bottom: 4px;
     padding-right: 10px;
+    padding-top: 8px;
     border-bottom: 1px solid #ff2a69;
+
+    @media (min-width: $mobileL) {
+      font-size: 47px;
+    }
 
     &::before {
       content: ' ';

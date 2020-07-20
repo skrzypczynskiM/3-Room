@@ -63,7 +63,7 @@ export default {
 .container {
   position: relative;
   display: inline-block;
-
+  text-align: center;
   background: rgba(50, 50, 50, 0.5);
   z-index: 1;
   padding: 0.2em;

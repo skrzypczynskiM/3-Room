@@ -64,6 +64,7 @@ export default {
 .main-wrapper {
   position: relative;
   height: 100%;
+  background: #353839;
 }
 
 .slide-page-leave-active {
