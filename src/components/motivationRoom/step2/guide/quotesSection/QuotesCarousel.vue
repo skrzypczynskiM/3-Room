@@ -60,7 +60,7 @@ export default {
     padding: 10px 15px;
 
     & blockquote {
-      font-size: 16px;
+      font-size: 18px;
       line-height: 1.3;
       text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4),
         0px 8px 13px rgba(0, 0, 0, 0.1), 0px 18px 23px rgba(0, 0, 0, 0.1);

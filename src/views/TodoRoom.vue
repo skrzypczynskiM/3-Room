@@ -1,10 +1,11 @@
 <template>
   <div class="main-wrapper">
+    <div class="overlay" :class="{ active: isMenuOpen }"></div>
     <!-- <router-link to="/bar">Go to Bar</router-link> -->
     <div class="doodle">
       <TodoRandomDoodles :isMenuOpen="isMenuOpen" />
     </div>
-    <TodoMenuButton :toggleMenu="toggleMenu" />
+    <TodoMenuButton :toggleMenu="toggleMenu" :isMenuOpen="isMenuOpen" />
     <TodoMenu
       :isMenuOpen="isMenuOpen"
       :toggleEditMode="toggleEditMode"
@@ -303,18 +304,6 @@ export default {
   }
 }
 
-/* .fade-enter-active,
-.fade-leave-active {
-  transition-duration: 0.3s;
-  transition-property: opacity;
-  transition-timing-function: ease;
-}
-
-.fade-enter,
-.fade-leave-active {
-  opacity: 0;
-} */
-
 .fade-enter-active,
 .fade-leave-active {
   transition-duration: 0.3s;
@@ -325,5 +314,29 @@ export default {
 .fade-enter,
 .fade-leave-active {
   opacity: 0;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: inline-block;
+  z-index: -1;
+  background-color: black;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+
+  &.active {
+    opacity: 0.6;
+    z-index: 500;
+    display: block;
+    transition: opacity 0.5s ease;
+
+    @media (min-width: $laptop) {
+      display: none;
+    }
+  }
 }
 </style>
