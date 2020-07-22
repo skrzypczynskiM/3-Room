@@ -14,7 +14,7 @@
         placeholder="Today's priority..."
         v-on:input="updatePriority($event)"
         ref="input"
-        v-model="title"
+        v-model="this.topPriorityTodo.title"
       />
     </form>
     <p v-else class="priority-content">
@@ -32,7 +32,6 @@ export default {
   data() {
     return {
       isTyping: false,
-      title: '',
     };
   },
 
@@ -62,13 +61,6 @@ export default {
       else return false;
     },
   },
-  mounted() {
-    if (this.title) {
-      this.isTyping = true;
-      if (this.topPriorityTodo.title.length > 0)
-        this.title = this.topPriorityTodo.title;
-    }
-  },
 
   components: {
     CheckBox,
@@ -82,7 +74,6 @@ export default {
     },
     isResetAllTodos: function() {
       this.isTyping = true;
-      this.title = '';
     },
   },
 };

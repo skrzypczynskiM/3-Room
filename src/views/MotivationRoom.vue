@@ -2,7 +2,7 @@
   <div class="main-wrapper">
     <transition name="slide-page">
       <SelectDesire
-        v-if="step === 1"
+        v-if="checkCurrentStep(1)"
         v-on:next-step="addStep"
         v-on:stage-change="setStage($event)"
         :setDesire="setDesire"
@@ -11,7 +11,7 @@
         v-on:selected-desire="setDesire"
       />
       <Desire
-        v-if="step === 2"
+        v-else
         :desire="desire"
         :stage="stage"
         v-on:stage-change="setStage($event)"
@@ -50,6 +50,10 @@ export default {
       if (stage === 'init') this.backStep();
 
       this.stage = stage;
+    },
+
+    checkCurrentStep(step) {
+      return this.step === step;
     },
   },
 

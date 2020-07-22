@@ -5,7 +5,7 @@
       :class="{ active: isMenuOpen }"
       v-on:click="toggleEditMode"
     >
-      <a>{{ isEditMode ? 'Save' : 'Edit' }}</a>
+      <a>{{ editState }}</a>
     </li>
     <li
       v-on:click="$emit('reset')"
@@ -25,6 +25,12 @@
 export default {
   name: 'TodoMenu',
   props: ['isMenuOpen', 'toggleEditMode', 'isEditMode'],
+
+  computed: {
+    editState() {
+      return this.isEditMode ? 'Save' : 'Edit';
+    },
+  },
 };
 </script>
 
