@@ -1,24 +1,6 @@
 # room-app
 
-## Project setup
-```
-npm install
-```
+## Description
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Simple yet beautiful, filled with smooth animations app. Create tasks, set up your priority task for today,  mark them as completed, and finally watch it as a progress bar is being filled with each completed task. When tired, replenish your energy in Motivation Room.
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
